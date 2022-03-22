@@ -1,10 +1,18 @@
-import { MockAPI } from "./pages";
+import "./utility.css";
+import { Routes, Route } from "react-router-dom";
+import { HomePage, MockAPI } from "pages";
+import { Footer, Navigation } from "components";
 
 function App() {
   return (
-    <div className="App">
-      <MockAPI />
-    </div>
+    <>
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/mockman" element={<MockAPI />} />
+      </Routes>
+      <Footer />
+    </>
   );
 }
 
