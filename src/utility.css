@@ -17,10 +17,6 @@ body {
   gap: 1rem;
 }
 
-.category-container {
-  padding: 1rem;
-}
-
 .cursor {
   cursor: pointer;
 }
