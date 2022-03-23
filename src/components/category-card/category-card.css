@@ -1,0 +1,9 @@
+.category-image-container {
+  width: 20rem;
+  height: 15rem;
+}
+
+.card-text-overlay {
+    color: var(--color-black);
+    font-weight: bolder;
+}

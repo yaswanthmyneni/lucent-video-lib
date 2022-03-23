@@ -1,0 +1,17 @@
+/* Navigation Section */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-index-header);
+}
+
+.navbar-container {
+  padding: 8px;
+}
+
+/* Responsiveness */
+@media screen and (max-width: 768px) {
+  .navbar h5 {
+    margin: 0;
+  }
+}
