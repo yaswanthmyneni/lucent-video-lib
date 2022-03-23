@@ -2,6 +2,14 @@
   padding-bottom: 7.8rem;
 }
 
+.category {
+  margin-top: 2rem;
+}
+
+.category > h2 {
+  padding-left: 12px;
+}
+
 .category-container {
   padding: 1rem 2rem;
 }
