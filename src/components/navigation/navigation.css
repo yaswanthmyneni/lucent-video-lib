@@ -3,7 +3,6 @@
   position: sticky;
   top: 0;
   z-index: var(--z-index-header);
-  margin-bottom: 1rem;
 }
 
 .navbar-container {
