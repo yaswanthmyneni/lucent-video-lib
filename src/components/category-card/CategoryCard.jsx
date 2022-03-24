@@ -1,9 +1,8 @@
 import "./category-card.css";
-import { Link } from "react-router-dom";
 
 const CategoryCard = ({ categoryData: { categoryName, image } }) => {
   return (
-    <Link className="cursor card-pos-rel" to={`/category/${categoryName}`}>
+    <div className="cursor card-pos-rel">
       <div className="category-image-container">
         <img
           className="image-resp border-radius"
@@ -15,7 +14,7 @@ const CategoryCard = ({ categoryData: { categoryName, image } }) => {
       <div className="card-text-overlay">
         <h3>{`${categoryName.toUpperCase()}`}</h3>
       </div>
-    </Link>
+    </div>
   );
 };
 
