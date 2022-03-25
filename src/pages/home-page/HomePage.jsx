@@ -2,10 +2,12 @@ import "./home-page.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CategoryCard } from "components";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   const [categoryList, setCategoryList] = useState([]);
 
+  // getting category data
   useEffect(() => {
     (async () => {
       const response = await axios.get("/api/categories");
@@ -26,7 +28,17 @@ const HomePage = () => {
         <h2>Categories:</h2>
         <div className="category-container flex gap-1rem">
           {categoryList.map((categoryData) => (
-            <CategoryCard key={categoryData._id} categoryData={categoryData} />
+            <Link
+              to={`/category/${categoryData.categoryName}`}
+              onClick={() =>
+                localStorage.setItem("categoryName", categoryData.categoryName)
+              }
+            >
+              <CategoryCard
+                key={categoryData._id}
+                categoryData={categoryData}
+              />
+            </Link>
           ))}
         </div>
       </section>

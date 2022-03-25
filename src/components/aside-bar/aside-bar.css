@@ -1,0 +1,47 @@
+/* aside bar */
+.aside {
+  width: 5rem;
+  background-color: var(--color-green-600);
+  position: sticky;
+  top: 4.5rem;
+  left: 0;
+  height: calc(100vh - 4.5rem);
+}
+
+.aside-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.aside-fa {
+  font-size: 3rem;
+  width: 3rem;
+  padding: 8px;
+  color: var(--color-white);
+}
+
+.aside-fa:hover {
+  color: var(--color-black);
+}
+
+@media screen and (max-width: 486px) {
+  .aside {
+    width: 100%;
+    height: fit-content;
+    position: fixed;
+    bottom: 0;
+    top: 89%;
+    z-index: var(--z-index-aside-bar);
+    border-top: 3px solid var(--color-green-800);
+  }
+
+  .aside-div {
+    flex-direction: row;
+    margin-top: 0;
+    padding: 8px 2rem;
+    justify-content: space-around;
+  }
+}

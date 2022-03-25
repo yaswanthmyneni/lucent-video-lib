@@ -1,3 +1,4 @@
+import { VideoListingProvider } from "context";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -10,7 +11,9 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <VideoListingProvider>
+        <App />
+      </VideoListingProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
