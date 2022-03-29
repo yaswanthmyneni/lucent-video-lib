@@ -6,14 +6,6 @@
   background-color: var(--color-white);
 }
 
-.video-card-container > i {
-  font-size: 1.5rem;
-  color: var(--color-gray);
-  position: absolute;
-  top: 10px;
-  right: 12px;
-}
-
 .video-card-image-container {
   width: 17.5rem;
   height: 11rem;
@@ -21,6 +13,19 @@
 
 .btn {
   border-radius: 0;
+  width: 100%;
+}
+
+.video-card-flex-adjustment {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.video-card-icon {
+  font-size: 2rem;
+  position: absolute;
+  top: 12px;
+  right: 10px;
 }
 
 @media screen and (max-width: 486px) {
