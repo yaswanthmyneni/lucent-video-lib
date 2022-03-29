@@ -5,7 +5,7 @@ const AsideBar = () => {
   return (
     <aside className="aside">
       <div className="aside-div">
-        <Link to="/watchlater">
+        <Link to="/watch-later">
           <i className="fa-solid fa-clock aside-fa cursor"></i>
         </Link>
         <Link to="/playlist">
