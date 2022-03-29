@@ -21,9 +21,11 @@ const VideoListingProvider = ({ children }) => {
     })();
   }, []);
 
-  const value = { videoList };
+  const value = { videoList, setVideoList };
 
-  return <VideoListing.Provider value={value}>{children}</VideoListing.Provider>;
+  return (
+    <VideoListing.Provider value={value}>{children}</VideoListing.Provider>
+  );
 };
 
 export { useVideoListingContext, VideoListingProvider };
