@@ -1,4 +1,8 @@
-import { VideoListingProvider } from "context";
+import {
+  HistoryProvider,
+  VideoListingProvider,
+  WatchLaterProvider,
+} from "context";
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
@@ -11,9 +15,13 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <VideoListingProvider>
-        <App />
-      </VideoListingProvider>
+      <HistoryProvider>
+        <WatchLaterProvider>
+          <VideoListingProvider>
+            <App />
+          </VideoListingProvider>
+        </WatchLaterProvider>
+      </HistoryProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
