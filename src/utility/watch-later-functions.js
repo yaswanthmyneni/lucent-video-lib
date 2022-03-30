@@ -1,4 +1,18 @@
-const addToWatchLater = (watchLaterData, setVideoList, watchLaterDispatch) => {
+import axios from "axios";
+
+const addToWatchLater = async (
+  watchLaterData,
+  setVideoList,
+  watchLaterDispatch
+) => {
+  const response = await axios({
+    method: "post",
+    url: "/api/user/watchlater",
+    headers: { authorization: localStorage.getItem("token") },
+    data: {
+      video: watchLaterData,
+    },
+  });
   setVideoList((prev) =>
     [...prev].map((videoData) => {
       if (videoData._id === watchLaterData._id) {
@@ -8,24 +22,34 @@ const addToWatchLater = (watchLaterData, setVideoList, watchLaterDispatch) => {
     })
   );
   watchLaterDispatch({
-    type: "ADD_TO_WATCH_LATER",
-    payload: { ...watchLaterData, watchLater: true },
+    type: "WATCH_LATER",
+    payload: [
+      ...response.data.watchlater.map((item) => {
+        return { ...item, watchLater: true };
+      }),
+    ],
   });
 };
 
-const removeFromWatchLater = (
-  watchLaterList,
-  id,
-  setVideoList,
-  watchLaterDispatch
-) => {
-  const filteredWatchLaterList = [...watchLaterList].filter(
-    (watchLaterData) => watchLaterData._id !== id
-  );
-  watchLaterDispatch({
-    type: "REMOVE_FROM_WATCH_LATER",
-    payload: [...filteredWatchLaterList],
+const removeFromWatchLater = async (id, setVideoList, watchLaterDispatch) => {
+  const response = await axios({
+    method: "delete",
+    url: `/api/user/watchlater/${id}`,
+    headers: { authorization: localStorage.getItem("token") },
   });
+
+  const watchLaterTrue = [...response.data.watchlater].map(
+    (watchLaterData) => ({
+      ...watchLaterData,
+      watchLater: true,
+    })
+  );
+
+  watchLaterDispatch({
+    type: "WATCH_LATER",
+    payload: [...watchLaterTrue],
+  });
+
   setVideoList((prev) =>
     [...prev].map((videoData) => {
       if (videoData._id === id) {

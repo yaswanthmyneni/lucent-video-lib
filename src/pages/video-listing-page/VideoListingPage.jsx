@@ -56,7 +56,6 @@ const VideoListingPage = () => {
               }
               removeFromWatchLater={() =>
                 removeFromWatchLater(
-                  watchLaterList,
                   videoData._id,
                   setVideoList,
                   watchLaterDispatch

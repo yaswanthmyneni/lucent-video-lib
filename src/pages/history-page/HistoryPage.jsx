@@ -1,7 +1,7 @@
 import { VideoCard, AsideBar } from "components";
 import { useHistoryContext } from "context";
 import { useNavigate } from "react-router-dom";
-import { addToHistory, removeFromHistory } from "utility";
+import { addToHistory, clearAllFromHistory, removeFromHistory } from "utility";
 import "./history-page.css";
 
 const HistoryPage = () => {
@@ -18,7 +18,15 @@ const HistoryPage = () => {
     <div className="page-wrapper">
       <AsideBar />
       <main className="history-page-main">
-        <h3>History</h3>
+        <div className="flex">
+          <h3>History</h3>
+          <button
+            className="btn btn-danger history-btn"
+            onClick={() => clearAllFromHistory(historyDispatch)}
+          >
+            clear all
+          </button>
+        </div>
         <div className="history-container">
           {historyList.map((historyData) => (
             <VideoCard
@@ -27,7 +35,7 @@ const HistoryPage = () => {
               btnNameTwo="Remove from history"
               cardData={historyData}
               removeFromHistory={() =>
-                removeFromHistory(historyList, historyData._id, historyDispatch)
+                removeFromHistory(historyData._id, historyDispatch)
               }
               addToHistory={() =>
                 addToHistory(

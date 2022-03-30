@@ -1,16 +1,12 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useEffect } from "react";
+import axios from "axios";
 
 const History = createContext();
 const useHistoryContext = () => useContext(History);
 
 const HistoryReducer = (historyState, action) => {
   switch (action.type) {
-    case "ADD_TO_HISTORY":
-      return {
-        ...historyState,
-        historyList: [...historyState.historyList, action.payload],
-      };
-    case "REMOVE_FROM_HISTORY":
+    case "HISTORY":
       return {
         ...historyState,
         historyList: action.payload,
@@ -24,6 +20,20 @@ const HistoryProvider = ({ children }) => {
   const [historyState, historyDispatch] = useReducer(HistoryReducer, {
     historyList: [],
   });
+
+  useEffect(() => {
+    (async () => {
+      const response = await axios({
+        method: "get",
+        url: "/api/user/history",
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      historyDispatch({
+        type: "HISTORY",
+        payload: response.data.history,
+      });
+    })();
+  }, []);
 
   const value = { historyState, historyDispatch };
 

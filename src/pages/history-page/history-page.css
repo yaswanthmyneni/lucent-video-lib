@@ -9,3 +9,13 @@
   gap: 1rem;
   margin: 1rem 0;
 }
+
+.history-page-main .flex {
+  justify-content: space-between;
+}
+
+.history-btn {
+  padding: 0 1em;
+  width: fit-content;
+  border-radius: 5px;
+}
