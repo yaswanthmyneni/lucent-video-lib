@@ -1,0 +1,16 @@
+/* Main Section */
+.watch-later-page-main {
+  margin: 1rem 2rem;
+}
+
+.watch-later-page-main .flex {
+  justify-content: space-between;
+}
+
+.watch-later-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+

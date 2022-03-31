@@ -1,0 +1,21 @@
+/* Main Section */
+.history-page-main {
+  margin: 1rem 2rem;
+}
+
+.history-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.history-page-main .flex {
+  justify-content: space-between;
+}
+
+.history-btn {
+  padding: 0 1em;
+  width: fit-content;
+  border-radius: 5px;
+}
