@@ -23,15 +23,21 @@ const HistoryProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await axios({
-        method: "get",
-        url: "/api/user/history",
-        headers: { authorization: localStorage.getItem("token") },
-      });
-      historyDispatch({
-        type: "HISTORY",
-        payload: response.data.history,
-      });
+      try {
+        const response = await axios({
+          method: "get",
+          url: "/api/user/history",
+          headers: { authorization: localStorage.getItem("token") },
+        });
+        if (response.status === 200) {
+          historyDispatch({
+            type: "HISTORY",
+            payload: response.data.history,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
     })();
   }, []);
 

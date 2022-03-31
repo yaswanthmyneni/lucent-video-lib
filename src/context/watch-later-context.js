@@ -28,15 +28,21 @@ const WatchLaterProvider = ({ children }) => {
 
   useEffect(() => {
     (async () => {
-      const response = await axios({
-        method: "get",
-        url: "/api/user/watchlater",
-        headers: { authorization: localStorage.getItem("token") },
-      });
-      watchLaterDispatch({
-        type: "WATCH_LATER",
-        payload: response.data.watchlater,
-      });
+      try {
+        const response = await axios({
+          method: "get",
+          url: "/api/user/watchlater",
+          headers: { authorization: localStorage.getItem("token") },
+        });
+        if (response.status === 200) {
+          watchLaterDispatch({
+            type: "WATCH_LATER",
+            payload: response.data.watchlater,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+      }
     })();
   }, []);
 
