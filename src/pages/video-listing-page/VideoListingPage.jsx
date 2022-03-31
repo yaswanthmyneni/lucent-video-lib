@@ -19,7 +19,6 @@ const VideoListingPage = () => {
 
   // from watch later context
   const {
-    watchLaterState: { watchLaterList },
     watchLaterDispatch,
   } = useWatchLaterContext();
 
