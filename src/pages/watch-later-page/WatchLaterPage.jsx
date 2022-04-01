@@ -4,6 +4,7 @@ import {
   useWatchLaterContext,
   useVideoListingContext,
   useHistoryContext,
+  usePlaylistContext,
 } from "context";
 import { addToHistory, removeFromWatchLater } from "utility";
 import { useNavigate } from "react-router-dom";
@@ -23,6 +24,11 @@ const WatchLaterPage = () => {
     historyState: { historyList },
     historyDispatch,
   } = useHistoryContext();
+
+  // from playlist context
+  const {
+    playlistState,
+  } = usePlaylistContext();
 
   // from react-router-dom
   const navigate = useNavigate();
@@ -53,6 +59,7 @@ const WatchLaterPage = () => {
                   navigate
                 )
               }
+              playlistState={playlistState}
             />
           ))}
         </div>

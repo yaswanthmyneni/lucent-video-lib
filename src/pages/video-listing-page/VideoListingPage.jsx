@@ -1,13 +1,16 @@
 import "./video-listing-page.css";
 import {
   useHistoryContext,
+  usePlaylistContext,
   useVideoListingContext,
   useWatchLaterContext,
 } from "context";
-import { AsideBar, VideoCard } from "components";
+import { AsideBar, PlaylistModal, VideoCard } from "components";
 import {
   addToHistory,
+  addVideoToRespectivePlaylist,
   addToWatchLater,
+  createPlaylist,
   removeFromWatchLater,
   sortByCategory,
 } from "utility";
@@ -18,15 +21,18 @@ const VideoListingPage = () => {
   const { videoList, setVideoList } = useVideoListingContext();
 
   // from watch later context
-  const {
-    watchLaterDispatch,
-  } = useWatchLaterContext();
+  const { watchLaterDispatch } = useWatchLaterContext();
 
   // from history context
   const {
     historyState: { historyList },
     historyDispatch,
   } = useHistoryContext();
+
+  // from playlist context context
+  const { playlistState, playlistDispatch } = usePlaylistContext();
+  const { playlists, playlistName, playlistId, showPlaylistModal, videoData } =
+    playlistState;
 
   // from localStorage
   const categoryName = localStorage.getItem("categoryName");
@@ -60,12 +66,29 @@ const VideoListingPage = () => {
                   watchLaterDispatch
                 )
               }
-              addToWatchLater={() =>
-                addToWatchLater(videoData, setVideoList, watchLaterDispatch)
-              }
+              addToWatchLater={() => {
+                console.log(videoData);
+                addToWatchLater(videoData, setVideoList, watchLaterDispatch);
+              }}
+              playlistDispatch={playlistDispatch}
             />
           ))}
         </div>
+        {showPlaylistModal && (
+          <PlaylistModal
+            createPlaylist={() =>
+              createPlaylist(playlistName, playlistDispatch, playlists)
+            }
+            addVideoToRespectivePlaylist={() =>
+              addVideoToRespectivePlaylist(
+                videoData,
+                playlistId,
+                playlists,
+                playlistDispatch
+              )
+            }
+          />
+        )}
       </main>
     </div>
   );

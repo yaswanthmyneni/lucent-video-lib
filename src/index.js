@@ -1,5 +1,6 @@
 import {
   HistoryProvider,
+  PlaylistProvider,
   VideoListingProvider,
   WatchLaterProvider,
 } from "context";
@@ -15,13 +16,15 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <HistoryProvider>
-        <WatchLaterProvider>
-          <VideoListingProvider>
-            <App />
-          </VideoListingProvider>
-        </WatchLaterProvider>
-      </HistoryProvider>
+      <PlaylistProvider>
+        <HistoryProvider>
+          <WatchLaterProvider>
+            <VideoListingProvider>
+              <App />
+            </VideoListingProvider>
+          </WatchLaterProvider>
+        </HistoryProvider>
+      </PlaylistProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

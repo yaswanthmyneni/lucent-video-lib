@@ -1,0 +1,41 @@
+.modal {
+  display: block;
+  background-color: var(--color-green-300);
+  padding: 2rem;
+  z-index: var(--z-index-modal-26);
+}
+
+.modal-bg {
+  display: block;
+}
+
+.modal-ul {
+  padding: 0;
+  margin-bottom: 0;
+}
+
+.modal-li {
+  display: inline-block;
+}
+
+.modal > .btn {
+  padding: 0.3em 0.5em;
+  margin-left: 1rem;
+  width: fit-content;
+  border: none;
+}
+.modal > input {
+  padding: 0.3em;
+  outline: 0;
+}
+
+.modal-input-checkbox {
+  margin: 0 8px 0 0;
+}
+
+.modal-close {
+  font-size: 1.5rem;
+  position: absolute;
+  right: 2px;
+  top: 4px;
+}

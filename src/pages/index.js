@@ -4,3 +4,6 @@ export { VideoListingPage } from "./video-listing-page/VideoListingPage";
 export { WatchLaterPage } from "./watch-later-page/WatchLaterPage";
 export { HistoryPage } from "./history-page/HistoryPage";
 export { VideoPage } from "./video-page/VideoPage";
+export { PlaylistPage } from "./playlist-page/PlaylistPage";
+export { SinglePlaylistPage } from "./single-playlist-page/SinglePlaylistPage";
+export { ErrorPage } from "./error-page/ErrorPage";
