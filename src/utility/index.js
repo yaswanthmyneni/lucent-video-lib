@@ -10,6 +10,6 @@ export {
   addVideoToRespectivePlaylist,
   deletePlaylist,
   removeVideoFromPlaylist,
-  getPlaylist,
+  getPlaylistData,
   getPlaylists,
 } from "./playlist-functions";

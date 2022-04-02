@@ -109,7 +109,7 @@ const removeVideoFromPlaylist = async (
   }
 };
 
-const getPlaylist = async (playlistId, playlistDispatch) => {
+const getPlaylistData = async (playlistId, playlistDispatch) => {
   try {
     const response = await axios({
       method: "get",
@@ -138,7 +138,7 @@ const getPlaylists = async (playlistDispatch) => {
     });
     if (response.status === 200) {
       playlistDispatch({
-        type: "PLAYLIST",
+        type: "PLAYLISTS",
         payload: response.data.playlists,
       });
     }
@@ -152,6 +152,6 @@ export {
   addVideoToRespectivePlaylist,
   deletePlaylist,
   removeVideoFromPlaylist,
-  getPlaylist,
+  getPlaylistData,
   getPlaylists,
 };

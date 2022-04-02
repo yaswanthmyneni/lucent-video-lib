@@ -2,7 +2,11 @@ import { AsideBar, PlaylistVideoCard } from "components";
 import { usePlaylistContext } from "context";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { addToHistory, getPlaylist, removeVideoFromPlaylist } from "utility";
+import {
+  addToHistory,
+  getPlaylistData,
+  removeVideoFromPlaylist,
+} from "utility";
 import "./single-playlist-page.css";
 
 const SinglePlaylistPage = () => {
@@ -16,7 +20,13 @@ const SinglePlaylistPage = () => {
   const { playlistId } = useParams();
 
   useEffect(() => {
-    getPlaylist(playlistId, playlistDispatch);
+    getPlaylistData(playlistId, playlistDispatch);
+    return () => {
+      playlistDispatch({
+        type: "PLAYLIST_VIDEOS_DATA",
+        payload: [],
+      });
+    };
   }, [playlistId, playlistDispatch]);
 
   return (

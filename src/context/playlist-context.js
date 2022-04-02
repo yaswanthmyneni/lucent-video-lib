@@ -57,7 +57,7 @@ const PlaylistProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    getPlaylists();
+    getPlaylists(playlistDispatch);
   }, []);
 
   const value = { playlistState, playlistDispatch };
