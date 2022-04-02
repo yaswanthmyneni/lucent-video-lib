@@ -44,11 +44,6 @@ const removeFromHistory = async (id, historyDispatch) => {
     });
 
     if (response.status === 200) {
-      // const historyTrue = [...response.data.history].map((historyData) => ({
-      //   ...historyData,
-      //   history: true,
-      // }));
-
       historyDispatch({
         type: "HISTORY",
         payload: response.data.history,
