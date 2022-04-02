@@ -9,6 +9,10 @@ const createPlaylist = async (playlistName, playlistDispatch, playlists) => {
       return console.log("The name is taken");
     }
 
+    if (playlistName === "") {
+      return console.log("Please provide name to the playlist");
+    }
+
     const response = await axios({
       method: "post",
       url: "/api/user/playlists",

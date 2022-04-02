@@ -45,7 +45,7 @@ const PlaylistProvider = ({ children }) => {
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
     playlists: [],
     playlistId: null,
-    playlistName: null,
+    playlistName: '',
     showPlaylistModal: false,
     videoData: {},
     playlistVideos: [],
