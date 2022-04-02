@@ -19,6 +19,16 @@ const VideoCard = ({
   const { title, image, watchLater, history } = cardData;
   const [dropdown, setDropdown] = useState(false);
 
+  const updatedRemoveFromWatchLater = () => {
+    removeFromWatchLater();
+    setDropdown(!dropdown);
+  };
+
+  const updatedAddToWatchLater = () => {
+    addToWatchLater();
+    setDropdown(!dropdown);
+  };
+
   return (
     <>
       <div className="video-card-container card-pos-rel">
@@ -56,14 +66,8 @@ const VideoCard = ({
                 className="dropdown-li cursor"
                 onClick={
                   watchLater
-                    ? () => {
-                        removeFromWatchLater();
-                        setDropdown(!dropdown);
-                      }
-                    : () => {
-                        addToWatchLater();
-                        setDropdown(!dropdown);
-                      }
+                    ? updatedRemoveFromWatchLater
+                    : updatedAddToWatchLater
                 }
               >
                 <MdWatchLater />{" "}
