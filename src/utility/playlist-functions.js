@@ -129,10 +129,29 @@ const getPlaylist = async (playlistId, playlistDispatch) => {
   }
 };
 
+const getPlaylists = async (playlistDispatch) => {
+  try {
+    const response = await axios({
+      method: "get",
+      url: "/api/user/playlists",
+      headers: { authorization: localStorage.getItem("token") },
+    });
+    if (response.status === 200) {
+      playlistDispatch({
+        type: "PLAYLIST",
+        payload: response.data.playlists,
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export {
   createPlaylist,
   addVideoToRespectivePlaylist,
   deletePlaylist,
   removeVideoFromPlaylist,
   getPlaylist,
+  getPlaylists,
 };

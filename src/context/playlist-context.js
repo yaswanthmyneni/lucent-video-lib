@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import axios from "axios";
+import { getPlaylists } from "utility";
 
 const Playlist = createContext();
 const usePlaylistContext = () => useContext(Playlist);
@@ -57,23 +57,7 @@ const PlaylistProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios({
-          method: "get",
-          url: "/api/user/playlists",
-          headers: { authorization: localStorage.getItem("token") },
-        });
-        if (response.status === 200) {
-          playlistDispatch({
-            type: "PLAYLIST",
-            payload: response.data.playlists,
-          });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    getPlaylists();
   }, []);
 
   const value = { playlistState, playlistDispatch };

@@ -11,4 +11,5 @@ export {
   deletePlaylist,
   removeVideoFromPlaylist,
   getPlaylist,
+  getPlaylists,
 } from "./playlist-functions";
