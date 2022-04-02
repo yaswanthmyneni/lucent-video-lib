@@ -33,11 +33,9 @@ const HomePage = () => {
               onClick={() =>
                 localStorage.setItem("categoryName", categoryData.categoryName)
               }
+              key={categoryData._id}
             >
-              <CategoryCard
-                key={categoryData._id}
-                categoryData={categoryData}
-              />
+              <CategoryCard categoryData={categoryData} />
             </Link>
           ))}
         </div>

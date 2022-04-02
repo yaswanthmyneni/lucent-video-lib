@@ -7,6 +7,9 @@ import {
   VideoListingPage,
   VideoPage,
   WatchLaterPage,
+  PlaylistPage,
+  SinglePlaylistPage,
+  ErrorPage,
 } from "pages";
 import { Footer, Navigation } from "components";
 
@@ -17,6 +20,7 @@ function App() {
     <>
       <Navigation />
       <Routes>
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/category">
           <Route path="youth-and-truth" element={<VideoListingPage />} />
@@ -25,8 +29,10 @@ function App() {
         </Route>
         <Route path="/watch-later" element={<WatchLaterPage />} />
         <Route path="/history" element={<HistoryPage />} />
+        <Route path="/playlist" element={<PlaylistPage />} />
+        <Route path="/playlist/:playlistId" element={<SinglePlaylistPage />} />
         <Route path="/video">
-          <Route path=":video_id"  element={<VideoPage />} />
+          <Route path=":video_id" element={<VideoPage />} />
         </Route>
         <Route path="/mockman" element={<MockAPI />} />
       </Routes>

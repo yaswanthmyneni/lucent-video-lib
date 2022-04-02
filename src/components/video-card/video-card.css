@@ -4,6 +4,7 @@
   width: 17.5rem;
   box-shadow: 0 0 3px var(--color-silver);
   background-color: var(--color-white);
+  position: relative;
 }
 
 .video-card-image-container {
@@ -26,6 +27,34 @@
   position: absolute;
   top: 12px;
   right: 10px;
+}
+
+.dropdown {
+  position: absolute;
+  bottom: 4rem;
+  right: 1.5rem;
+  z-index: var(--z-index-dropdown-25);
+}
+
+.dropdown-ul {
+  background-color: var(--color-gray);
+  color: black;
+  border-radius: 5px;
+  padding: 4px 0;
+  margin: 0;
+}
+
+.dropdown-li {
+  padding: 4px 8px;
+  margin: 8px 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.dropdown-li:hover {
+  background-color: var(--color-green-400);
 }
 
 @media screen and (max-width: 486px) {

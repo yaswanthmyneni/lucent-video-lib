@@ -1,6 +1,8 @@
 :root {
   --z-index-header: 10;
   --z-index-aside-bar: 24;
+  --z-index-dropdown-25: 25;
+  --z-index-modal-26: 26;
 }
 
 body {
@@ -20,6 +22,10 @@ body {
 
 .flex-direction {
   flex-direction: column;
+}
+
+.align-items-center {
+  align-items: center;
 }
 
 .gap-1rem {

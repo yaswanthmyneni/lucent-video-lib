@@ -1,0 +1,9 @@
+.playlist-card-container {
+  width: 18rem;
+  padding: 4px;
+  border: 1px solid var(--color-silver);
+}
+
+.playlist-card-image-container {
+  height: 13rem;
+}

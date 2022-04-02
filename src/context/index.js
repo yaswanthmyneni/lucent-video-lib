@@ -8,3 +8,4 @@ export {
   WatchLaterProvider,
 } from "./watch-later-context";
 export { useHistoryContext, HistoryProvider } from "./history-context";
+export { usePlaylistContext, PlaylistProvider } from "./playlist-context";
