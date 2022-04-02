@@ -21,15 +21,10 @@ const addToHistory = async (
         video: videoData,
       },
     });
-
     if (response.status === 201) {
       historyDispatch({
         type: "HISTORY",
-        payload: [
-          ...response.data.history.map((item) => {
-            return { ...item, history: true };
-          }),
-        ],
+        payload: response.data.history,
       });
       navigate(`/video/${videoData.video_id}`, {
         state: { videoData },
@@ -49,14 +44,14 @@ const removeFromHistory = async (id, historyDispatch) => {
     });
 
     if (response.status === 200) {
-      const historyTrue = [...response.data.history].map((historyData) => ({
-        ...historyData,
-        history: true,
-      }));
+      // const historyTrue = [...response.data.history].map((historyData) => ({
+      //   ...historyData,
+      //   history: true,
+      // }));
 
       historyDispatch({
         type: "HISTORY",
-        payload: [...historyTrue],
+        payload: response.data.history,
       });
     }
   } catch (error) {

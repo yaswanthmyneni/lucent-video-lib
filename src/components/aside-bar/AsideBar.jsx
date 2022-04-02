@@ -1,3 +1,4 @@
+import { AiFillLike } from "assets/icons/icons";
 import { Link } from "react-router-dom";
 import "./aside-bar.css";
 
@@ -13,6 +14,9 @@ const AsideBar = () => {
         </Link>
         <Link to="/history">
           <i className="fa-solid fa-clock-rotate-left aside-fa cursor"></i>
+        </Link>
+        <Link to="/likes">
+          <AiFillLike className="aside-fa cursor" />
         </Link>
       </div>
     </aside>

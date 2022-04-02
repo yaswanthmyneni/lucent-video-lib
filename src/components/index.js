@@ -1,8 +1,10 @@
 export { Navigation } from "./navigation/Navigation";
 export { CategoryCard } from "./category-card/CategoryCard";
-export { VideoCard } from "./video-card/VideoCard";
-export { PlaylistCard } from "./playlist-card/PlaylistCard";
+export { VideoCard } from "./cards/video-card/VideoCard";
+export { PlaylistCard } from "./cards/playlist-card/PlaylistCard";
 export { Footer } from "./footer/Footer";
 export { AsideBar } from "./aside-bar/AsideBar";
 export { PlaylistModal } from "./playlist-modal/PlaylistModal";
-export { PlaylistVideoCard } from "./playlist-video-card/PlaylistVideoCard";
+export { PlaylistVideoCard } from "./cards/playlist-video-card/PlaylistVideoCard";
+export { LikesCard } from "./cards/likes-card/LikedVideoCard";
+export { HistoryCard } from "./cards/history-card/HistoryCard";

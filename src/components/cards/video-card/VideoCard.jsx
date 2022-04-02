@@ -1,8 +1,8 @@
 import {
   BsThreeDotsVertical,
   MdWatchLater,
-  MdDelete,
   MdPlaylistAdd,
+  AiFillLike,
 } from "assets/icons/icons";
 import { useState } from "react";
 import "./video-card.css";
@@ -11,12 +11,13 @@ const VideoCard = ({
   cardData,
   btnNameOne,
   addToHistory,
-  removeFromHistory,
   addToWatchLater,
   removeFromWatchLater,
   playlistDispatch,
+  addToLikedVideos,
+  removeFromLikedVideos,
 }) => {
-  const { title, image, watchLater, history } = cardData;
+  const { title, image, watchLater, liked } = cardData;
   const [dropdown, setDropdown] = useState(false);
 
   const updatedRemoveFromWatchLater = () => {
@@ -32,10 +33,12 @@ const VideoCard = ({
   return (
     <>
       <div className="video-card-container card-pos-rel">
-        {history && (
-          <MdDelete
-            className="video-card-icon cursor color-red"
-            onClick={removeFromHistory}
+        {!watchLater && (
+          <AiFillLike
+            className={`video-card-icon cursor ${
+              liked ? "color-green" : "color-black"
+            }`}
+            onClick={liked ? removeFromLikedVideos : addToLikedVideos}
           />
         )}
         <div className="video-card-image-container">
@@ -44,15 +47,14 @@ const VideoCard = ({
         <div className="card-margin">
           <div className="flex video-card-flex-adjustment">
             <h5>{title}</h5>
-            {!history && (
-              <BsThreeDotsVertical
-                className="cursor"
-                onClick={() => {
-                  setDropdown(!dropdown);
+            <BsThreeDotsVertical
+              className="cursor"
+              onClick={() => {
+                setDropdown(!dropdown);
+                !watchLater &&
                   playlistDispatch({ type: "VIDEO_DATA", payload: cardData });
-                }}
-              />
-            )}
+              }}
+            />
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>

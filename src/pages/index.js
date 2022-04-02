@@ -6,4 +6,5 @@ export { HistoryPage } from "./history-page/HistoryPage";
 export { VideoPage } from "./video-page/VideoPage";
 export { PlaylistPage } from "./playlist-page/PlaylistPage";
 export { SinglePlaylistPage } from "./single-playlist-page/SinglePlaylistPage";
+export { LikesPage } from "./likes-page/LikesPage";
 export { ErrorPage } from "./error-page/ErrorPage";

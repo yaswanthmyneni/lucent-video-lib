@@ -10,6 +10,7 @@ import {
   PlaylistPage,
   SinglePlaylistPage,
   ErrorPage,
+  LikesPage,
 } from "pages";
 import { Footer, Navigation } from "components";
 
@@ -30,6 +31,7 @@ function App() {
         <Route path="/watch-later" element={<WatchLaterPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/playlist" element={<PlaylistPage />} />
+        <Route path="/likes" element={<LikesPage />} />
         <Route path="/playlist/:playlistId" element={<SinglePlaylistPage />} />
         <Route path="/video">
           <Route path=":video_id" element={<VideoPage />} />

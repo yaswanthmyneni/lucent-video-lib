@@ -9,3 +9,4 @@ export {
 } from "./watch-later-context";
 export { useHistoryContext, HistoryProvider } from "./history-context";
 export { usePlaylistContext, PlaylistProvider } from "./playlist-context";
+export { useLikesContext, LikesProvider } from "./likes-context";
