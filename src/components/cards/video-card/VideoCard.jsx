@@ -33,14 +33,12 @@ const VideoCard = ({
   return (
     <>
       <div className="video-card-container card-pos-rel">
-        {!watchLater && (
-          <AiFillLike
-            className={`video-card-icon cursor ${
-              liked ? "color-green" : "color-black"
-            }`}
-            onClick={liked ? removeFromLikedVideos : addToLikedVideos}
-          />
-        )}
+        <AiFillLike
+          className={`video-card-icon cursor ${
+            liked ? "color-green" : "color-black"
+          }`}
+          onClick={liked ? removeFromLikedVideos : addToLikedVideos}
+        />
         <div className="video-card-image-container">
           <img className="image-resp" src={image} alt={title} />
         </div>

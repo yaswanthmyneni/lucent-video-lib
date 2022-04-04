@@ -7,4 +7,5 @@ export { AsideBar } from "./aside-bar/AsideBar";
 export { PlaylistModal } from "./playlist-modal/PlaylistModal";
 export { PlaylistVideoCard } from "./cards/playlist-video-card/PlaylistVideoCard";
 export { LikesCard } from "./cards/likes-card/LikesCard";
+export { WatchLaterCard } from "./cards/watchlater-card/WatchLaterCard";
 export { HistoryCard } from "./cards/history-card/HistoryCard";
