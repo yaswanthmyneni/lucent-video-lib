@@ -8,3 +8,6 @@ export { PlaylistPage } from "./playlist-page/PlaylistPage";
 export { SinglePlaylistPage } from "./single-playlist-page/SinglePlaylistPage";
 export { LikesPage } from "./likes-page/LikesPage";
 export { ErrorPage } from "./error-page/ErrorPage";
+export { SignInPage } from "./authentication-pages/signin-page/SignInPage";
+export { LogoutPage } from "./authentication-pages/logout-page/LogoutPage";
+export { SignUpPage } from "./authentication-pages/signup-page/SignUpPage";

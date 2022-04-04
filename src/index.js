@@ -1,4 +1,5 @@
 import {
+  AuthenticationProvider,
   HistoryProvider,
   LikesProvider,
   PlaylistProvider,
@@ -17,17 +18,19 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <LikesProvider>
-        <PlaylistProvider>
-          <HistoryProvider>
-            <WatchLaterProvider>
-              <VideoListingProvider>
-                <App />
-              </VideoListingProvider>
-            </WatchLaterProvider>
-          </HistoryProvider>
-        </PlaylistProvider>
-      </LikesProvider>
+      <AuthenticationProvider>
+        <LikesProvider>
+          <PlaylistProvider>
+            <HistoryProvider>
+              <WatchLaterProvider>
+                <VideoListingProvider>
+                  <App />
+                </VideoListingProvider>
+              </WatchLaterProvider>
+            </HistoryProvider>
+          </PlaylistProvider>
+        </LikesProvider>
+      </AuthenticationProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

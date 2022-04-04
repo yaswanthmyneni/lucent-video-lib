@@ -1,6 +1,11 @@
 export { sortByCategory } from "./filter-functions";
-export { addToWatchLater, removeFromWatchLater } from "./watch-later-functions";
 export {
+  getWatchLaterData,
+  addToWatchLater,
+  removeFromWatchLater,
+} from "./watch-later-functions";
+export {
+  getHistoryData,
   addToHistory,
   removeFromHistory,
   clearAllFromHistory,
@@ -18,3 +23,7 @@ export {
   addToLikedVideos,
   removeFromLikedVideos,
 } from "./likes-functions";
+export {
+  submitSignInDetails,
+  submitSignUpDetails,
+} from "./authentication-functions";

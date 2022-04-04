@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
-import axios from "axios";
+import { getHistoryData } from "utility";
 
 const History = createContext();
 const useHistoryContext = () => useContext(History);
@@ -22,23 +22,7 @@ const HistoryProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    (async () => {
-      try {
-        const response = await axios({
-          method: "get",
-          url: "/api/user/history",
-          headers: { authorization: localStorage.getItem("token") },
-        });
-        if (response.status === 200) {
-          historyDispatch({
-            type: "HISTORY",
-            payload: response.data.history,
-          });
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+    getHistoryData(historyDispatch);
   }, []);
 
   const value = { historyState, historyDispatch };
