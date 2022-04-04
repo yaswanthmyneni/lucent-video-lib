@@ -13,3 +13,8 @@ export {
   getPlaylistData,
   getPlaylists,
 } from "./playlist-functions";
+export {
+  getLikedVideos,
+  addToLikedVideos,
+  removeFromLikedVideos,
+} from "./likes-functions";

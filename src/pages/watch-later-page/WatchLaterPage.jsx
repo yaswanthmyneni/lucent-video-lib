@@ -1,10 +1,9 @@
 import "./watch-later-page.css";
-import { VideoCard, AsideBar } from "components";
+import { AsideBar, WatchLaterCard } from "components";
 import {
   useWatchLaterContext,
   useVideoListingContext,
   useHistoryContext,
-  usePlaylistContext,
 } from "context";
 import { addToHistory, removeFromWatchLater } from "utility";
 import { useNavigate } from "react-router-dom";
@@ -25,11 +24,6 @@ const WatchLaterPage = () => {
     historyDispatch,
   } = useHistoryContext();
 
-  // from playlist context
-  const {
-    playlistState,
-  } = usePlaylistContext();
-
   // from react-router-dom
   const navigate = useNavigate();
 
@@ -40,7 +34,7 @@ const WatchLaterPage = () => {
         <h3>Watch Later</h3>
         <div className="watch-later-container">
           {watchLaterList.map((watchLaterData) => (
-            <VideoCard
+            <WatchLaterCard
               key={watchLaterData._id}
               btnNameOne="Watch now"
               cardData={watchLaterData}
@@ -59,7 +53,6 @@ const WatchLaterPage = () => {
                   navigate
                 )
               }
-              playlistState={playlistState}
             />
           ))}
         </div>

@@ -1,6 +1,7 @@
 import "./video-listing-page.css";
 import {
   useHistoryContext,
+  useLikesContext,
   usePlaylistContext,
   useVideoListingContext,
   useWatchLaterContext,
@@ -13,6 +14,8 @@ import {
   createPlaylist,
   removeFromWatchLater,
   sortByCategory,
+  addToLikedVideos,
+  removeFromLikedVideos,
 } from "utility";
 import { useNavigate } from "react-router-dom";
 
@@ -29,10 +32,13 @@ const VideoListingPage = () => {
     historyDispatch,
   } = useHistoryContext();
 
-  // from playlist context context
+  // from playlist context
   const { playlistState, playlistDispatch } = usePlaylistContext();
   const { playlists, playlistName, playlistId, showPlaylistModal, videoData } =
     playlistState;
+
+  // from liked videos context
+  const { likesDispatch } = useLikesContext();
 
   // from localStorage
   const categoryName = localStorage.getItem("categoryName");
@@ -66,10 +72,19 @@ const VideoListingPage = () => {
                   watchLaterDispatch
                 )
               }
-              addToWatchLater={() => {
-                console.log(videoData);
-                addToWatchLater(videoData, setVideoList, watchLaterDispatch);
-              }}
+              addToWatchLater={() =>
+                addToWatchLater(videoData, setVideoList, watchLaterDispatch)
+              }
+              addToLikedVideos={() =>
+                addToLikedVideos(videoData, likesDispatch, setVideoList)
+              }
+              removeFromLikedVideos={() =>
+                removeFromLikedVideos(
+                  videoData._id,
+                  likesDispatch,
+                  setVideoList
+                )
+              }
               playlistDispatch={playlistDispatch}
             />
           ))}
