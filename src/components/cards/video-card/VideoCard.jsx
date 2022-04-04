@@ -17,7 +17,7 @@ const VideoCard = ({
   addToLikedVideos,
   removeFromLikedVideos,
 }) => {
-  const { title, image, watchLater, liked } = cardData;
+  const { title, image, watchLater, isLiked } = cardData;
   const [dropdown, setDropdown] = useState(false);
 
   const updatedRemoveFromWatchLater = () => {
@@ -35,9 +35,9 @@ const VideoCard = ({
       <div className="video-card-container card-pos-rel">
         <AiFillLike
           className={`video-card-icon cursor ${
-            liked ? "color-green" : "color-black"
+            isLiked ? "color-green" : "color-black"
           }`}
-          onClick={liked ? removeFromLikedVideos : addToLikedVideos}
+          onClick={isLiked ? removeFromLikedVideos : addToLikedVideos}
         />
         <div className="video-card-image-container">
           <img className="image-resp" src={image} alt={title} />

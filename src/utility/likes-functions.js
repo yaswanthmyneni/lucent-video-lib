@@ -35,7 +35,7 @@ const addToLikedVideos = async (
     if (response.status === 201) {
       const likedVideosData = [...response.data.likes].map((data) => {
         if (data._id === likedVideoData._id) {
-          return { ...data, liked: true };
+          return { ...data, isLiked: true };
         }
         return data;
       });
@@ -46,7 +46,7 @@ const addToLikedVideos = async (
       setVideoList((prev) =>
         [...prev].map((videoData) => {
           if (videoData._id === likedVideoData._id) {
-            return { ...videoData, liked: true };
+            return { ...videoData, isLiked: true };
           }
           return videoData;
         })
@@ -76,7 +76,7 @@ const removeFromLikedVideos = async (
       setVideoList((prev) =>
         [...prev].map((videoData) => {
           if (videoData._id === dislikedDataId) {
-            return { ...videoData, liked: false };
+            return { ...videoData, isLiked: false };
           }
           return videoData;
         })
