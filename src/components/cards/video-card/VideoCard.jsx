@@ -73,7 +73,6 @@ const VideoCard = ({
                 <MdWatchLater />{" "}
                 {watchLater ? "Remove from watchlater" : "Add to watchlater"}
               </li>
-              {!watchLater && (
                 <li
                   className="dropdown-li cursor"
                   onClick={() => {
@@ -86,7 +85,6 @@ const VideoCard = ({
                 >
                   <MdPlaylistAdd /> playlist
                 </li>
-              )}
             </ul>
           </div>
         )}

@@ -1,36 +1,62 @@
 import axios from "axios";
 
+const getWatchLaterData = async (watchLaterDispatch) => {
+  try {
+    const encodedToken = localStorage.getItem("token");
+    if (encodedToken) {
+      const response = await axios({
+        method: "get",
+        url: "/api/user/watchlater",
+        headers: { authorization: encodedToken },
+      });
+      if (response.status === 200) {
+        watchLaterDispatch({
+          type: "WATCH_LATER",
+          payload: response.data.watchlater,
+        });
+      }
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const addToWatchLater = async (
   watchLaterData,
   setVideoList,
   watchLaterDispatch
 ) => {
   try {
-    const response = await axios({
-      method: "post",
-      url: "/api/user/watchlater",
-      headers: { authorization: localStorage.getItem("token") },
-      data: {
-        video: watchLaterData,
-      },
-    });
-    if (response.status === 201) {
-      watchLaterDispatch({
-        type: "WATCH_LATER",
-        payload: [
-          ...response.data.watchlater.map((item) => {
-            return { ...item, watchLater: true };
-          }),
-        ],
+    const encodedToken = localStorage.getItem("token");
+    if (encodedToken) {
+      const response = await axios({
+        method: "post",
+        url: "/api/user/watchlater",
+        headers: { authorization: encodedToken },
+        data: {
+          video: watchLaterData,
+        },
       });
-      setVideoList((prev) =>
-        [...prev].map((videoData) => {
-          if (videoData._id === watchLaterData._id) {
-            return { ...videoData, watchLater: true };
-          }
-          return { ...videoData };
-        })
-      );
+      if (response.status === 201) {
+        watchLaterDispatch({
+          type: "WATCH_LATER",
+          payload: [
+            ...response.data.watchlater.map((item) => {
+              return { ...item, watchLater: true };
+            }),
+          ],
+        });
+        setVideoList((prev) =>
+          [...prev].map((videoData) => {
+            if (videoData._id === watchLaterData._id) {
+              return { ...videoData, watchLater: true };
+            }
+            return { ...videoData };
+          })
+        );
+      }
+    } else {
+      console.log("please login to save video to watchlater");
     }
   } catch (error) {
     console.error(error);
@@ -72,4 +98,4 @@ const removeFromWatchLater = async (id, setVideoList, watchLaterDispatch) => {
   }
 };
 
-export { addToWatchLater, removeFromWatchLater };
+export { getWatchLaterData, addToWatchLater, removeFromWatchLater };

@@ -11,6 +11,9 @@ import {
   SinglePlaylistPage,
   ErrorPage,
   LikesPage,
+  SignInPage,
+  SignUpPage,
+  LogoutPage,
 } from "pages";
 import { Footer, Navigation } from "components";
 
@@ -32,6 +35,9 @@ function App() {
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/playlist" element={<PlaylistPage />} />
         <Route path="/likes" element={<LikesPage />} />
+        <Route path="/sign-in" element={<SignInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/logout" element={<LogoutPage />} />
         <Route path="/playlist/:playlistId" element={<SinglePlaylistPage />} />
         <Route path="/video">
           <Route path=":video_id" element={<VideoPage />} />

@@ -9,6 +9,8 @@ const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist }) => {
     playlistDispatch,
   } = usePlaylistContext();
 
+  // from local storage
+  const encodedToken = localStorage.getItem("token");
   return (
     <>
       <div className="modal-bg"></div>
@@ -64,12 +66,14 @@ const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist }) => {
               </div>
             );
           })}
-          <button
-            className="btn btn-primary"
-            onClick={addVideoToRespectivePlaylist}
-          >
-            add to playlist
-          </button>
+          {encodedToken && (
+            <button
+              className="btn btn-primary"
+              onClick={addVideoToRespectivePlaylist}
+            >
+              add to playlist
+            </button>
+          )}
         </ul>
       </div>
     </>

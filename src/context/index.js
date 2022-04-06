@@ -10,3 +10,7 @@ export {
 export { useHistoryContext, HistoryProvider } from "./history-context";
 export { usePlaylistContext, PlaylistProvider } from "./playlist-context";
 export { useLikesContext, LikesProvider } from "./likes-context";
+export {
+  useAuthenticationContext,
+  AuthenticationProvider,
+} from "./authentication-context";

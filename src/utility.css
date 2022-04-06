@@ -49,7 +49,10 @@ body {
 }
 
 .link {
+  display: block;
   text-decoration: none;
+  color: var(--color-black);
+  text-align: center;
 }
 
 .color-black {
