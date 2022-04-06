@@ -2,7 +2,7 @@ import { usePlaylistContext } from "context";
 import { RiCloseCircleFill } from "assets/icons/icons";
 import "./playlist-modal.css";
 
-const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist }) => {
+const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist, playList }) => {
   // from playlist context
   const {
     playlistState: { playlists, playlistName },
@@ -38,7 +38,7 @@ const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist }) => {
         <button className="btn btn-primary" onClick={createPlaylist}>
           creat playlist
         </button>
-        <ul className="ul-none modal-ul">
+        {!playList && <ul className="ul-none modal-ul">
           {playlists.map((playlist) => {
             return (
               <div
@@ -74,7 +74,7 @@ const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist }) => {
               add to playlist
             </button>
           )}
-        </ul>
+        </ul>}
       </div>
     </>
   );
