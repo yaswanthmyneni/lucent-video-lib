@@ -1,19 +1,34 @@
-import { AsideBar, PlaylistCard } from "components";
+import { AsideBar, PlaylistCard, PlaylistModal } from "components";
 import { usePlaylistContext } from "context";
-import { deletePlaylist } from "utility";
+import { createPlaylist, deletePlaylist } from "utility";
 import "./playlist-page.css";
 
 const PlaylistPage = () => {
-  const {
-    playlistState: { playlists },
-    playlistDispatch,
-  } = usePlaylistContext();
+  // from playlist context
+  const { playlistState, playlistDispatch } = usePlaylistContext();
+  const { playlists, playlistName, showPlaylistModal } =
+    playlistState;
+
+  const playlistPage = true;
 
   return (
     <div className="page-wrapper">
       <AsideBar />
       <main className="playlist-page-main">
-        <h1>Playlists</h1>
+        <div className="flex">
+          <h3>Playlists</h3>
+          <button
+            className="btn btn-primary playlist-btn"
+            onClick={() =>
+              playlistDispatch({
+                type: "SHOW_PLAYLIST_MODAL",
+                payload: true,
+              })
+            }
+          >
+            create playlist
+          </button>
+        </div>
         <div className="playlist-container">
           {playlists.map((playlist) => {
             return (
@@ -27,6 +42,14 @@ const PlaylistPage = () => {
             );
           })}
         </div>
+        {showPlaylistModal && (
+          <PlaylistModal
+            createPlaylist={() =>
+              createPlaylist(playlistName, playlistDispatch, playlists)
+            }
+            playlistPage={playlistPage}
+          />
+        )}
       </main>
     </div>
   );
