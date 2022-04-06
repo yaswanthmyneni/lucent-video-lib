@@ -9,7 +9,7 @@ const PlaylistPage = () => {
   const { playlists, playlistName, showPlaylistModal } =
     playlistState;
 
-  const playList = 'playlist';
+  const playlistPage = true;
 
   return (
     <div className="page-wrapper">
@@ -47,15 +47,7 @@ const PlaylistPage = () => {
             createPlaylist={() =>
               createPlaylist(playlistName, playlistDispatch, playlists)
             }
-            playList={playList}
-            // addVideoToRespectivePlaylist={() =>
-            //   addVideoToRespectivePlaylist(
-            //     videoData,
-            //     playlistId,
-            //     playlists,
-            //     playlistDispatch
-            //   )
-            // }
+            playlistPage={playlistPage}
           />
         )}
       </main>
