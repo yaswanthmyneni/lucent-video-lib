@@ -30,6 +30,7 @@ const SignUpPage = () => {
                 type="text"
                 id="firstname"
                 name="firstname"
+                value={firstName}
                 required
                 onChange={(e) =>
                   authDispatch({ type: "FIRST_NAME", payload: e.target.value })
@@ -42,6 +43,7 @@ const SignUpPage = () => {
                 id="lastname"
                 name="lastname"
                 required
+                value={lastName}
                 onChange={(e) =>
                   authDispatch({ type: "LAST_NAME", payload: e.target.value })
                 }
@@ -52,6 +54,7 @@ const SignUpPage = () => {
                 type="email"
                 id="email"
                 name="email"
+                value={email}
                 required
                 onChange={(e) =>
                   authDispatch({ type: "EMAIL", payload: e.target.value })
@@ -63,6 +66,7 @@ const SignUpPage = () => {
                 type="password"
                 id="password"
                 name="password"
+                value={password}
                 required
                 onChange={(e) => {
                   authDispatch({ type: "PASSWORD", payload: e.target.value });
@@ -74,6 +78,7 @@ const SignUpPage = () => {
                 type="password"
                 id="confirm-password"
                 name="confirm-password"
+                value={confirmPassword}
                 required
                 onChange={(e) => {
                   authDispatch({

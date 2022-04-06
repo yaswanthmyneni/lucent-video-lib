@@ -29,6 +29,7 @@ const SignInPage = () => {
               type="email"
               id="email"
               name="email"
+              value={email}
               required
               onChange={(e) =>
                 authDispatch({ type: "EMAIL", payload: e.target.value })
@@ -40,6 +41,7 @@ const SignInPage = () => {
               type="password"
               id="password"
               name="password"
+              value={password}
               required
               onChange={(e) =>
                 authDispatch({ type: "PASSWORD", payload: e.target.value })
