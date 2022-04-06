@@ -5,8 +5,6 @@ const useAuthenticationContext = () => useContext(AuthenticationContext);
 
 const authenticationReducer = (state, { type, payload }) => {
   switch (type) {
-    case "TOKEN":
-      return { ...state, token: payload };
     case "EMAIL":
       return { ...state, email: payload };
     case "PASSWORD":
@@ -26,10 +24,9 @@ const AuthenticationProvider = ({ children }) => {
   const [authState, authDispatch] = useReducer(authenticationReducer, {
     firstName: "",
     lastName: "",
-    email: null,
+    email: "",
     password: "",
     confirmPassword: "",
-    token: null,
   });
 
   const value = { authState, authDispatch };
