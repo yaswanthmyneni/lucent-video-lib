@@ -1,6 +1,7 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
-const getHistoryData = async (historyDispatch) => {
+const getHistoryData = async (historyDispatch, toastDispatch) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -18,6 +19,14 @@ const getHistoryData = async (historyDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
@@ -25,7 +34,8 @@ const addToHistory = async (
   videoData,
   historyList,
   historyDispatch,
-  navigate
+  navigate,
+  toastDispatch
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -33,7 +43,14 @@ const addToHistory = async (
       if (
         historyList.find((historyData) => historyData._id === videoData._id)
       ) {
-        console.log("already present in history");
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-warning",
+            message: "already present in history",
+          },
+        });
         return navigate(`/video/${videoData.video_id}`, {
           state: { videoData },
         });
@@ -51,6 +68,14 @@ const addToHistory = async (
           type: "HISTORY",
           payload: response.data.history,
         });
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-success",
+            message: "Added to history",
+          },
+        });
         navigate(`/video/${videoData.video_id}`, {
           state: { videoData },
         });
@@ -59,14 +84,29 @@ const addToHistory = async (
       navigate(`/video/${videoData.video_id}`, {
         state: { videoData },
       });
-      console.log("please login to get history!");
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "login to store video in history",
+        },
+      });
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const removeFromHistory = async (id, historyDispatch) => {
+const removeFromHistory = async (id, historyDispatch, toastDispatch) => {
   try {
     const response = await axios({
       method: "delete",
@@ -79,13 +119,29 @@ const removeFromHistory = async (id, historyDispatch) => {
         type: "HISTORY",
         payload: response.data.history,
       });
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "removed from history",
+        },
+      });
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const clearAllFromHistory = async (historyDispatch) => {
+const clearAllFromHistory = async (historyDispatch, toastDispatch) => {
   try {
     const response = await axios({
       method: "delete",
@@ -101,6 +157,14 @@ const clearAllFromHistory = async (historyDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 

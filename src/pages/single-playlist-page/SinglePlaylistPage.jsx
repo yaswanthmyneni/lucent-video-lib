@@ -1,5 +1,9 @@
 import { AsideBar, PlaylistVideoCard } from "components";
-import { useHistoryContext, usePlaylistContext } from "context";
+import {
+  useHistoryContext,
+  usePlaylistContext,
+  useToastContext,
+} from "context";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import {
@@ -20,6 +24,9 @@ const SinglePlaylistPage = () => {
     historyState: { historyList },
     historyDispatch,
   } = useHistoryContext();
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   // from react-router-dom
   const navigate = useNavigate();
@@ -47,13 +54,20 @@ const SinglePlaylistPage = () => {
               cardData={videoData}
               btnNameOne="Watch now"
               addToHistory={() =>
-                addToHistory(videoData, historyList, historyDispatch, navigate)
+                addToHistory(
+                  videoData,
+                  historyList,
+                  historyDispatch,
+                  navigate,
+                  toastDispatch
+                )
               }
               removeVideoFromPlaylist={() =>
                 removeVideoFromPlaylist(
                   playlistId,
                   videoData._id,
-                  playlistDispatch
+                  playlistDispatch,
+                  toastDispatch
                 )
               }
             />

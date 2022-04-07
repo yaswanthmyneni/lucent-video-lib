@@ -1,6 +1,12 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
-const createPlaylist = async (playlistName, playlistDispatch, playlists) => {
+const createPlaylist = async (
+  playlistName,
+  playlistDispatch,
+  playlists,
+  toastDispatch
+) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -9,12 +15,25 @@ const createPlaylist = async (playlistName, playlistDispatch, playlists) => {
           (playlist) => playlist.title.playlistName === playlistName
         )
       ) {
-        //TODO - add toast here
-        return console.log("The name is taken");
+        return toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-warning",
+            message: "The playlist name is taken",
+          },
+        });
       }
 
       if (playlistName === "") {
-        return console.log("Please provide name to the playlist");
+        return toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-warning",
+            message: "provide name to the playlist",
+          },
+        });
       }
 
       const response = await axios({
@@ -34,13 +53,29 @@ const createPlaylist = async (playlistName, playlistDispatch, playlists) => {
           type: "PLAYLIST_NAME",
           payload: "",
         });
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-success",
+            message: "created playlist successfully",
+          },
+        });
       }
     } else {
-      console.log('please login to create playlist');
+      // TODO - navigate to login page
+      console.log("please login");
     }
   } catch (error) {
-    // TODO - toast here
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
@@ -48,7 +83,8 @@ const addVideoToRespectivePlaylist = async (
   cardData,
   playlistId,
   playlists,
-  playlistDispatch
+  playlistDispatch,
+  toastDispatch
 ) => {
   try {
     const response = await axios({
@@ -61,8 +97,14 @@ const addVideoToRespectivePlaylist = async (
     });
 
     if (response.status === 409) {
-      // TODO - toast here
-      return console.log("already present in playlist");
+      return toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-warning",
+          message: "already present in playlist",
+        },
+      });
     }
 
     if (response.status === 201) {
@@ -73,14 +115,29 @@ const addVideoToRespectivePlaylist = async (
         return { ...playlist };
       });
       playlistDispatch({ type: "PLAYLISTS", payload: updatedPlaylists });
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "added to playlist",
+        },
+      });
     }
   } catch (error) {
-    // TODO - toast here
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const deletePlaylist = async (id, playlistDispatch) => {
+const deletePlaylist = async (id, playlistDispatch, toastDispatch) => {
   try {
     const response = await axios({
       method: "delete",
@@ -93,17 +150,33 @@ const deletePlaylist = async (id, playlistDispatch) => {
         type: "PLAYLISTS",
         payload: response.data.playlists,
       });
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "Deleted playlist successfully",
+        },
+      });
     }
   } catch (error) {
-    // TODO - toast here
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
 const removeVideoFromPlaylist = async (
   playlistId,
   videoId,
-  playlistDispatch
+  playlistDispatch,
+  toastDispatch
 ) => {
   try {
     const response = await axios({
@@ -116,14 +189,29 @@ const removeVideoFromPlaylist = async (
         type: "PLAYLIST_VIDEOS_DATA",
         payload: response.data.playlist.videos,
       });
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "deleted video from playlist",
+        },
+      });
     }
   } catch (error) {
-    // TODO - toast here
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const getPlaylistData = async (playlistId, playlistDispatch) => {
+const getPlaylistData = async (playlistId, playlistDispatch, toastDispatch) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -141,12 +229,19 @@ const getPlaylistData = async (playlistId, playlistDispatch) => {
       }
     }
   } catch (error) {
-    // TODO - toast here
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const getPlaylists = async (playlistDispatch) => {
+const getPlaylists = async (playlistDispatch, toastDispatch) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -164,6 +259,14 @@ const getPlaylists = async (playlistDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 

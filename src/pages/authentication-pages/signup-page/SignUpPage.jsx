@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useAuthenticationContext } from "context";
+import { useAuthenticationContext, useToastContext } from "context";
 import { useNavigate } from "react-router-dom";
 import { submitSignUpDetails } from "utility";
 import "./signup-page.css";
@@ -16,6 +16,9 @@ const SignUpPage = () => {
     authState: { email, password, confirmPassword, firstName, lastName },
     authDispatch,
   } = useAuthenticationContext();
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   return (
     <>
@@ -115,7 +118,8 @@ const SignUpPage = () => {
                     firstName,
                     lastName,
                     navigate,
-                    encodedToken
+                    encodedToken,
+                    toastDispatch
                   )
                 }
               >
