@@ -18,7 +18,7 @@ import {
   addToLikedVideos,
   removeFromLikedVideos,
 } from "utility";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const VideoListingPage = () => {
   // from video listing context
@@ -52,6 +52,7 @@ const VideoListingPage = () => {
 
   // from react-router-dom
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="page-wrapper">
@@ -88,7 +89,9 @@ const VideoListingPage = () => {
                   videoData,
                   setVideoList,
                   watchLaterDispatch,
-                  toastDispatch
+                  toastDispatch,
+                  navigate,
+                  location
                 )
               }
               addToLikedVideos={() =>
@@ -96,7 +99,9 @@ const VideoListingPage = () => {
                   videoData,
                   likesDispatch,
                   setVideoList,
-                  toastDispatch
+                  toastDispatch,
+                  navigate,
+                  location
                 )
               }
               removeFromLikedVideos={() =>
@@ -118,7 +123,9 @@ const VideoListingPage = () => {
                 playlistName,
                 playlistDispatch,
                 playlists,
-                toastDispatch
+                toastDispatch,
+                navigate,
+                location
               )
             }
             addVideoToRespectivePlaylist={() =>

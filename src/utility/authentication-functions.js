@@ -6,6 +6,7 @@ const submitSignInDetails = async (
   email,
   password,
   navigate,
+  location,
   encodedToken,
   toastDispatch
 ) => {
@@ -27,7 +28,7 @@ const submitSignInDetails = async (
     });
     if (response.status === 200) {
       localStorage.setItem("token", response.data.encodedToken);
-      navigate("/");
+      navigate(location?.state?.from?.pathname, { replace: true });
       toastDispatch({
         type: "ADD_TOAST",
         payload: {
@@ -57,6 +58,7 @@ const submitSignUpDetails = async (
   firstName,
   lastName,
   navigate,
+  location,
   encodedToken,
   toastDispatch
 ) => {
@@ -85,7 +87,7 @@ const submitSignUpDetails = async (
 
       if (response.status === 201) {
         localStorage.setItem("token", response.data.encodedToken);
-        navigate("/");
+        navigate(location?.state?.from?.pathname, { replace: true });
         toastDispatch({
           type: "ADD_TOAST",
           payload: {

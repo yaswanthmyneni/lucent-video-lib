@@ -34,7 +34,9 @@ const addToLikedVideos = async (
   likedVideoData,
   likesDispatch,
   setVideoList,
-  toastDispatch
+  toastDispatch,
+  navigate,
+  location
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -76,8 +78,7 @@ const addToLikedVideos = async (
         );
       }
     } else {
-      //TODO - navigate to login page
-      console.log('please login');
+      navigate("/sign-in", { state: { from: location } });
     }
   } catch (error) {
     console.error(error);
