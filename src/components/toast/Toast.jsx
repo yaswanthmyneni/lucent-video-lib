@@ -10,7 +10,7 @@ const Toast = () => {
   } = useToastContext();
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    const intervalId = setTimeout(() => {
       if (toastList.length) {
         toastDispatch({
           type: "REMOVE_TOAST",
