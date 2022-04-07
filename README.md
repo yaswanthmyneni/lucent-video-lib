@@ -1,10 +1,9 @@
 # Lucent Video
 
-### By Yaswanth Myneni
+A Video Library for learning different aspects of yoga.
 
 Preview : [Lucent Video](https://ym-video-lib-dev.netlify.app/)
 
-A Video Library for learning different aspects of yoga.
 
 ### Features:
 
