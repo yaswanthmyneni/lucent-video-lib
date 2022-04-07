@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { getLikedVideos } from "utility";
+import { useToastContext } from "./toast-context";
 
 const Likes = createContext();
 const useLikesContext = () => useContext(Likes);
@@ -18,9 +19,12 @@ const LikesProvider = ({ children }) => {
     likedVideos: [],
   });
 
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
   useEffect(() => {
-    getLikedVideos(likesDispatch);
-  }, []);
+    getLikedVideos(likesDispatch, toastDispatch);
+  }, [toastDispatch]);
 
   const value = { likesState, likesDispatch };
 

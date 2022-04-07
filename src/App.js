@@ -15,7 +15,7 @@ import {
   SignUpPage,
   LogoutPage,
 } from "pages";
-import { Footer, Navigation } from "components";
+import { Footer, Navigation, Toast } from "components";
 
 function App() {
   const location = useLocation();
@@ -23,6 +23,7 @@ function App() {
   return (
     <>
       <Navigation />
+      <Toast />
       <Routes>
         <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<HomePage />} />

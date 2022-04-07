@@ -1,13 +1,15 @@
 import { AsideBar, PlaylistCard, PlaylistModal } from "components";
-import { usePlaylistContext } from "context";
+import { usePlaylistContext, useToastContext } from "context";
 import { createPlaylist, deletePlaylist } from "utility";
 import "./playlist-page.css";
 
 const PlaylistPage = () => {
   // from playlist context
   const { playlistState, playlistDispatch } = usePlaylistContext();
-  const { playlists, playlistName, showPlaylistModal } =
-    playlistState;
+  const { playlists, playlistName, showPlaylistModal } = playlistState;
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   const playlistPage = true;
 
@@ -36,7 +38,7 @@ const PlaylistPage = () => {
                 key={playlist._id}
                 playlist={playlist}
                 deletePlaylist={() =>
-                  deletePlaylist(playlist._id, playlistDispatch)
+                  deletePlaylist(playlist._id, playlistDispatch, toastDispatch)
                 }
               />
             );
@@ -45,7 +47,12 @@ const PlaylistPage = () => {
         {showPlaylistModal && (
           <PlaylistModal
             createPlaylist={() =>
-              createPlaylist(playlistName, playlistDispatch, playlists)
+              createPlaylist(
+                playlistName,
+                playlistDispatch,
+                playlists,
+                toastDispatch
+              )
             }
             playlistPage={playlistPage}
           />

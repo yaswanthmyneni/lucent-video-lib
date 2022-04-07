@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { getWatchLaterData } from "utility";
+import { useToastContext } from "./toast-context";
 
 const WatchLater = createContext();
 const useWatchLaterContext = () => useContext(WatchLater);
@@ -21,9 +22,12 @@ const WatchLaterProvider = ({ children }) => {
     watchLaterList: [],
   });
 
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
   useEffect(() => {
-    getWatchLaterData(watchLaterDispatch);
-  }, []);
+    getWatchLaterData(watchLaterDispatch, toastDispatch);
+  }, [toastDispatch]);
 
   const value = { watchLaterState, watchLaterDispatch };
 

@@ -9,3 +9,4 @@ export { PlaylistVideoCard } from "./cards/playlist-video-card/PlaylistVideoCard
 export { LikesCard } from "./cards/likes-card/LikesCard";
 export { WatchLaterCard } from "./cards/watchlater-card/WatchLaterCard";
 export { HistoryCard } from "./cards/history-card/HistoryCard";
+export { Toast } from "./toast/Toast";

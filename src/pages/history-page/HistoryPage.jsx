@@ -1,5 +1,5 @@
 import { AsideBar, HistoryCard } from "components";
-import { useHistoryContext } from "context";
+import { useHistoryContext, useToastContext } from "context";
 import { useNavigate } from "react-router-dom";
 import { addToHistory, clearAllFromHistory, removeFromHistory } from "utility";
 import "./history-page.css";
@@ -10,6 +10,9 @@ const HistoryPage = () => {
     historyState: { historyList },
     historyDispatch,
   } = useHistoryContext();
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   // from react-router-dom
   const navigate = useNavigate();
@@ -34,14 +37,19 @@ const HistoryPage = () => {
               btnNameOne="Watch now"
               cardData={historyData}
               removeFromHistory={() =>
-                removeFromHistory(historyData._id, historyDispatch)
+                removeFromHistory(
+                  historyData._id,
+                  historyDispatch,
+                  toastDispatch
+                )
               }
               addToHistory={() =>
                 addToHistory(
                   historyData,
                   historyList,
                   historyDispatch,
-                  navigate
+                  navigate,
+                  toastDispatch
                 )
               }
             />

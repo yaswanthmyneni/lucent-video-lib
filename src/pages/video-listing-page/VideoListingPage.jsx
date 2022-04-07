@@ -3,6 +3,7 @@ import {
   useHistoryContext,
   useLikesContext,
   usePlaylistContext,
+  useToastContext,
   useVideoListingContext,
   useWatchLaterContext,
 } from "context";
@@ -37,6 +38,9 @@ const VideoListingPage = () => {
   const { playlists, playlistName, playlistId, showPlaylistModal, videoData } =
     playlistState;
 
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
   // from liked videos context
   const { likesDispatch } = useLikesContext();
 
@@ -63,26 +67,44 @@ const VideoListingPage = () => {
               btnNameOne="Watch now"
               btnNameTwo="Watch later"
               addToHistory={() =>
-                addToHistory(videoData, historyList, historyDispatch, navigate)
+                addToHistory(
+                  videoData,
+                  historyList,
+                  historyDispatch,
+                  navigate,
+                  toastDispatch
+                )
               }
               removeFromWatchLater={() =>
                 removeFromWatchLater(
                   videoData._id,
                   setVideoList,
-                  watchLaterDispatch
+                  watchLaterDispatch,
+                  toastDispatch
                 )
               }
               addToWatchLater={() =>
-                addToWatchLater(videoData, setVideoList, watchLaterDispatch)
+                addToWatchLater(
+                  videoData,
+                  setVideoList,
+                  watchLaterDispatch,
+                  toastDispatch
+                )
               }
               addToLikedVideos={() =>
-                addToLikedVideos(videoData, likesDispatch, setVideoList)
+                addToLikedVideos(
+                  videoData,
+                  likesDispatch,
+                  setVideoList,
+                  toastDispatch
+                )
               }
               removeFromLikedVideos={() =>
                 removeFromLikedVideos(
                   videoData._id,
                   likesDispatch,
-                  setVideoList
+                  setVideoList,
+                  toastDispatch
                 )
               }
               playlistDispatch={playlistDispatch}
@@ -92,14 +114,20 @@ const VideoListingPage = () => {
         {showPlaylistModal && (
           <PlaylistModal
             createPlaylist={() =>
-              createPlaylist(playlistName, playlistDispatch, playlists)
+              createPlaylist(
+                playlistName,
+                playlistDispatch,
+                playlists,
+                toastDispatch
+              )
             }
             addVideoToRespectivePlaylist={() =>
               addVideoToRespectivePlaylist(
                 videoData,
                 playlistId,
                 playlists,
-                playlistDispatch
+                playlistDispatch,
+                toastDispatch
               )
             }
           />

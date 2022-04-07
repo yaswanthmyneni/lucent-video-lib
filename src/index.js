@@ -5,6 +5,7 @@ import {
   PlaylistProvider,
   VideoListingProvider,
   WatchLaterProvider,
+  ToastProvider,
 } from "context";
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,19 +19,21 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthenticationProvider>
-        <LikesProvider>
-          <PlaylistProvider>
-            <HistoryProvider>
-              <WatchLaterProvider>
-                <VideoListingProvider>
-                  <App />
-                </VideoListingProvider>
-              </WatchLaterProvider>
-            </HistoryProvider>
-          </PlaylistProvider>
-        </LikesProvider>
-      </AuthenticationProvider>
+      <ToastProvider>
+        <AuthenticationProvider>
+          <LikesProvider>
+            <PlaylistProvider>
+              <HistoryProvider>
+                <WatchLaterProvider>
+                  <VideoListingProvider>
+                    <App />
+                  </VideoListingProvider>
+                </WatchLaterProvider>
+              </HistoryProvider>
+            </PlaylistProvider>
+          </LikesProvider>
+        </AuthenticationProvider>
+      </ToastProvider>
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")

@@ -4,6 +4,7 @@ import {
   useWatchLaterContext,
   useVideoListingContext,
   useHistoryContext,
+  useToastContext,
 } from "context";
 import { addToHistory, removeFromWatchLater } from "utility";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +25,9 @@ const WatchLaterPage = () => {
     historyDispatch,
   } = useHistoryContext();
 
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
   // from react-router-dom
   const navigate = useNavigate();
 
@@ -42,7 +46,8 @@ const WatchLaterPage = () => {
                 removeFromWatchLater(
                   watchLaterData._id,
                   setVideoList,
-                  watchLaterDispatch
+                  watchLaterDispatch,
+                  toastDispatch
                 )
               }
               addToHistory={() =>
@@ -50,7 +55,8 @@ const WatchLaterPage = () => {
                   watchLaterData,
                   historyList,
                   historyDispatch,
-                  navigate
+                  navigate,
+                  toastDispatch
                 )
               }
             />

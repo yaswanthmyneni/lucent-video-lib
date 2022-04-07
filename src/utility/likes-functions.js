@@ -1,6 +1,7 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
-const getLikedVideos = async (likesDispatch) => {
+const getLikedVideos = async (likesDispatch, toastDispatch) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -18,13 +19,22 @@ const getLikedVideos = async (likesDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
 const addToLikedVideos = async (
   likedVideoData,
   likesDispatch,
-  setVideoList
+  setVideoList,
+  toastDispatch
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -48,6 +58,14 @@ const addToLikedVideos = async (
           type: "LIKED_VIDEOS",
           payload: likedVideosData,
         });
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-success",
+            message: "video added to likes",
+          },
+        });
         setVideoList((prev) =>
           [...prev].map((videoData) => {
             if (videoData._id === likedVideoData._id) {
@@ -58,17 +76,27 @@ const addToLikedVideos = async (
         );
       }
     } else {
-      console.log("please login to send video data to likes page");
+      //TODO - navigate to login page
+      console.log('please login');
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
 const removeFromLikedVideos = async (
   dislikedDataId,
   likesDispatch,
-  setVideoList
+  setVideoList,
+  toastDispatch
 ) => {
   try {
     const response = await axios({
@@ -81,6 +109,14 @@ const removeFromLikedVideos = async (
         type: "LIKED_VIDEOS",
         payload: response.data.likes,
       });
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "video removed from likes",
+        },
+      });
       setVideoList((prev) =>
         [...prev].map((videoData) => {
           if (videoData._id === dislikedDataId) {
@@ -92,6 +128,14 @@ const removeFromLikedVideos = async (
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 

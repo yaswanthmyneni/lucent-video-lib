@@ -1,6 +1,7 @@
 import axios from "axios";
+import { v4 as uuid } from "uuid";
 
-const getWatchLaterData = async (watchLaterDispatch) => {
+const getWatchLaterData = async (watchLaterDispatch, toastDispatch) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -18,13 +19,22 @@ const getWatchLaterData = async (watchLaterDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
 const addToWatchLater = async (
   watchLaterData,
   setVideoList,
-  watchLaterDispatch
+  watchLaterDispatch,
+  toastDispatch
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -46,6 +56,14 @@ const addToWatchLater = async (
             }),
           ],
         });
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-success",
+            message: "added to watchlater",
+          },
+        });
         setVideoList((prev) =>
           [...prev].map((videoData) => {
             if (videoData._id === watchLaterData._id) {
@@ -56,14 +74,28 @@ const addToWatchLater = async (
         );
       }
     } else {
-      console.log("please login to save video to watchlater");
+      // TODO - navigate to login page
+      console.log('please login');
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
-const removeFromWatchLater = async (id, setVideoList, watchLaterDispatch) => {
+const removeFromWatchLater = async (
+  id,
+  setVideoList,
+  watchLaterDispatch,
+  toastDispatch
+) => {
   try {
     const response = await axios({
       method: "delete",
@@ -84,6 +116,15 @@ const removeFromWatchLater = async (id, setVideoList, watchLaterDispatch) => {
         payload: [...watchLaterTrue],
       });
 
+      toastDispatch({
+        type: "ADD_TOAST",
+        payload: {
+          id: uuid(),
+          className: "toast-success",
+          message: "removed from watchlater",
+        },
+      });
+
       setVideoList((prev) =>
         [...prev].map((videoData) => {
           if (videoData._id === id) {
@@ -95,6 +136,14 @@ const removeFromWatchLater = async (id, setVideoList, watchLaterDispatch) => {
     }
   } catch (error) {
     console.error(error);
+    toastDispatch({
+      type: "ADD_TOAST",
+      payload: {
+        id: uuid(),
+        className: "toast-error",
+        message: "error! check console",
+      },
+    });
   }
 };
 
