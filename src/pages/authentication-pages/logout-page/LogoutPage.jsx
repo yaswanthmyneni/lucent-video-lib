@@ -1,15 +1,21 @@
 import "./logout-page.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LogoutPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="logout-flex logout-margin-top">
         <h2>You logged out successfully</h2>
         <div className="logout-flex logout-flex-direction">
-          <Link className="btn btn-primary text-lg" to="/sign-in">
+          <p
+            className="btn btn-primary text-lg"
+            onClick={() =>
+              navigate("/sign-in", { state: { from: { pathname: "/" } } })
+            }
+          >
             Login
-          </Link>
+          </p>
           <Link className="btn btn-primary text-lg" to="/">
             Home
           </Link>
