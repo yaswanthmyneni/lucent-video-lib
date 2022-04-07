@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuthenticationContext, useToastContext } from "context";
 import { submitSignInDetails } from "utility";
 import { useNavigate } from "react-router-dom";
@@ -14,11 +14,12 @@ const SignInPage = () => {
     authDispatch,
   } = useAuthenticationContext();
 
-   // from toast context
-   const { toastDispatch } = useToastContext();
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   // from react-router-dom
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <>
@@ -67,6 +68,7 @@ const SignInPage = () => {
                   email,
                   password,
                   navigate,
+                  location,
                   encodedToken,
                   toastDispatch
                 )
@@ -82,6 +84,7 @@ const SignInPage = () => {
                   "adarshbalika@gmail.com",
                   "adarshBalika123",
                   navigate,
+                  location,
                   encodedToken,
                   toastDispatch
                 )
@@ -90,11 +93,14 @@ const SignInPage = () => {
               guest sign-in
             </button>
           </form>
-          <Link to="/signup" className="link">
-            <p className="text-center text-lg cursor">
-              Create New Account <i className="fa-solid fa-angle-right"></i>
-            </p>
-          </Link>
+          <p
+            className="text-center text-lg cursor signup-margin-tb-4px"
+            onClick={() =>
+              navigate("/signup", { state: { from: { pathname: "/" } } })
+            }
+          >
+            Create New Account <i className="fa-solid fa-angle-right"></i>
+          </p>
         </div>
       </main>
     </>

@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { useAuthenticationContext, useToastContext } from "context";
 import { useNavigate } from "react-router-dom";
 import { submitSignUpDetails } from "utility";
@@ -7,6 +7,7 @@ import "./signup-page.css";
 const SignUpPage = () => {
   // from react-router-dom
   const navigate = useNavigate();
+  const location = useLocation();
 
   // from local storage
   const encodedToken = localStorage.getItem("token");
@@ -118,6 +119,7 @@ const SignUpPage = () => {
                     firstName,
                     lastName,
                     navigate,
+                    location,
                     encodedToken,
                     toastDispatch
                   )
@@ -126,12 +128,14 @@ const SignUpPage = () => {
                 Create New Account
               </button>
             </form>
-            <Link
-              to="/sign-in"
-              className="text-center text-lg cursor link signup-margin-tb-4px"
+            <p
+              className="text-center text-lg cursor signup-margin-tb-4px"
+              onClick={() =>
+                navigate("/sign-in", { state: { from: { pathname: "/" } } })
+              }
             >
               Already have an account<i className="fa-solid fa-angle-right"></i>
-            </Link>
+            </p>
           </div>
         </section>
       </main>

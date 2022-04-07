@@ -1,10 +1,11 @@
 import "./navigation.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 const Navigation = () => {
   const encodedToken = localStorage.getItem("token");
   const [logout, setLogout] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     if (logout) {
@@ -19,7 +20,9 @@ const Navigation = () => {
           <h1 className="navbar-m-lr-1">LUCENT VIDEO</h1>
         </NavLink>
         {!encodedToken && (
-          <NavLink className="navbar navbar-m-left-auto" to="/sign-in">
+          <NavLink className="navbar navbar-m-left-auto" to="/sign-in"
+          state={{ from: location }}
+          >
             <h5 className="navbar-m-lr-1">LOGIN</h5>
           </NavLink>
         )}
