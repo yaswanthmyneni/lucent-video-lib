@@ -1,16 +1,21 @@
-import { usePlaylistContext } from "context";
+import { usePlaylistContext, useToastContext } from "context";
 import { RiCloseCircleFill } from "assets/icons/icons";
 import "./playlist-modal.css";
+import { addVideoToRespectivePlaylist, removeVideoFromPlaylist } from "utility";
 
-const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist, playlistPage }) => {
+const PlaylistModal = ({
+  videoData,
+  createPlaylist,
+  playlistPage,
+}) => {
   // from playlist context
   const {
     playlistState: { playlists, playlistName },
     playlistDispatch,
   } = usePlaylistContext();
 
-  // from local storage
-  const encodedToken = localStorage.getItem("token");
+  // from toast Context
+  const { toastDispatch } = useToastContext();
   return (
     <>
       <div className="modal-bg"></div>
@@ -38,43 +43,47 @@ const PlaylistModal = ({ createPlaylist, addVideoToRespectivePlaylist, playlistP
         <button className="btn btn-primary" onClick={createPlaylist}>
           creat playlist
         </button>
-        {!playlistPage && <ul className="ul-none modal-ul">
-          {playlists.map((playlist) => {
-            return (
-              <div
-                key={playlist._id}
-                className="m-b-4px flex align-items-center"
-              >
-                <label>
-                  <input
-                    type="radio"
-                    className="modal-input-checkbox"
-                    name="playlist"
-                    onChange={(event) => {
-                      if (event.target.checked) {
-                        playlistDispatch({
-                          type: "PLAYLIST_ID",
-                          payload: playlist._id,
-                        });
-                      }
-                    }}
-                  />
-                  <li className="cursor modal-li">
-                    {playlist.title.playlistName}
-                  </li>
-                </label>
-              </div>
-            );
-          })}
-          {encodedToken && (
-            <button
-              className="btn btn-primary"
-              onClick={addVideoToRespectivePlaylist}
-            >
-              add to playlist
-            </button>
-          )}
-        </ul>}
+        {!playlistPage && (
+          <ul className="ul-none modal-ul">
+            {playlists.map((playlist) => {
+              return (
+                <div
+                  key={playlist._id}
+                  className="m-b-4px flex align-items-center"
+                >
+                  <label>
+                    <input
+                      type="checkbox"
+                      className="modal-input-checkbox"
+                      name="playlist"
+                      onChange={(event) => {
+                        if (event.target.checked) {
+                          addVideoToRespectivePlaylist(
+                            videoData,
+                            playlist._id,
+                            playlists,
+                            playlistDispatch,
+                            toastDispatch
+                          );
+                        } else {
+                          removeVideoFromPlaylist(
+                            playlist._id,
+                            videoData._id,
+                            playlistDispatch,
+                            toastDispatch
+                          );
+                        }
+                      }}
+                    />
+                    <li className="cursor modal-li">
+                      {playlist.title.playlistName}
+                    </li>
+                  </label>
+                </div>
+              );
+            })}
+          </ul>
+        )}
       </div>
     </>
   );
