@@ -6,8 +6,6 @@ const createPlaylist = async (
   playlistDispatch,
   playlists,
   toastDispatch,
-  navigate,
-  location
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -64,8 +62,6 @@ const createPlaylist = async (
           },
         });
       }
-    } else {
-      navigate("/sign-in", { state: { from: location } });
     }
   } catch (error) {
     console.error(error);

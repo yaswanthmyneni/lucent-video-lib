@@ -12,11 +12,6 @@ const playlistReducer = (playlistState, { type, payload }) => {
         ...playlistState,
         playlists: payload,
       };
-    case "PLAYLIST_ID":
-      return {
-        ...playlistState,
-        playlistId: payload,
-      };
     case "PLAYLIST_NAME":
       return {
         ...playlistState,
@@ -45,7 +40,6 @@ const playlistReducer = (playlistState, { type, payload }) => {
 const PlaylistProvider = ({ children }) => {
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
     playlists: [],
-    playlistId: null,
     playlistName: "",
     showPlaylistModal: false,
     videoData: {},

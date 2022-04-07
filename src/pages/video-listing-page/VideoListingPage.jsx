@@ -10,7 +10,6 @@ import {
 import { AsideBar, PlaylistModal, VideoCard } from "components";
 import {
   addToHistory,
-  addVideoToRespectivePlaylist,
   addToWatchLater,
   createPlaylist,
   removeFromWatchLater,
@@ -35,7 +34,7 @@ const VideoListingPage = () => {
 
   // from playlist context
   const { playlistState, playlistDispatch } = usePlaylistContext();
-  const { playlists, playlistName, playlistId, showPlaylistModal, videoData } =
+  const { playlists, playlistName, showPlaylistModal, videoData } =
     playlistState;
 
   // from toast context
@@ -118,22 +117,12 @@ const VideoListingPage = () => {
         </div>
         {showPlaylistModal && (
           <PlaylistModal
+            videoData={videoData}
             createPlaylist={() =>
               createPlaylist(
                 playlistName,
                 playlistDispatch,
                 playlists,
-                toastDispatch,
-                navigate,
-                location
-              )
-            }
-            addVideoToRespectivePlaylist={() =>
-              addVideoToRespectivePlaylist(
-                videoData,
-                playlistId,
-                playlists,
-                playlistDispatch,
                 toastDispatch
               )
             }

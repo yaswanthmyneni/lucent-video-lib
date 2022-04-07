@@ -5,6 +5,7 @@ import {
   AiFillLike,
 } from "assets/icons/icons";
 import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./video-card.css";
 
 const VideoCard = ({
@@ -30,6 +31,10 @@ const VideoCard = ({
     setDropdown(!dropdown);
   };
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const encodedToken = localStorage.getItem("token");
   return (
     <>
       <div className="video-card-container card-pos-rel">
@@ -73,18 +78,22 @@ const VideoCard = ({
                 <MdWatchLater />{" "}
                 {watchLater ? "Remove from watchlater" : "Add to watchlater"}
               </li>
-                <li
-                  className="dropdown-li cursor"
-                  onClick={() => {
-                    playlistDispatch({
-                      type: "SHOW_PLAYLIST_MODAL",
-                      payload: true,
-                    });
-                    setDropdown(!dropdown);
-                  }}
-                >
-                  <MdPlaylistAdd /> playlist
-                </li>
+              <li
+                className="dropdown-li cursor"
+                onClick={
+                  encodedToken
+                    ? () => {
+                        playlistDispatch({
+                          type: "SHOW_PLAYLIST_MODAL",
+                          payload: true,
+                        });
+                        setDropdown(!dropdown);
+                      }
+                    : () => navigate("/sign-in", { state: { from: location } })
+                }
+              >
+                <MdPlaylistAdd /> playlist
+              </li>
             </ul>
           </div>
         )}
