@@ -4,6 +4,7 @@ A Video Library for learning different aspects of yoga.
 
 Preview : [Lucent Video](https://ym-video-lib-dev.netlify.app/)
 
+After forking the project, run "npm install" to download all the dependencies and then run "npm start"
 
 ### Features:
 
