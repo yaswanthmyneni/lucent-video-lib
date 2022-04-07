@@ -1,5 +1,6 @@
 import { createContext, useContext, useReducer, useEffect } from "react";
 import { getPlaylists } from "utility";
+import { useToastContext } from "./toast-context";
 
 const Playlist = createContext();
 const usePlaylistContext = () => useContext(Playlist);
@@ -45,15 +46,18 @@ const PlaylistProvider = ({ children }) => {
   const [playlistState, playlistDispatch] = useReducer(playlistReducer, {
     playlists: [],
     playlistId: null,
-    playlistName: '',
+    playlistName: "",
     showPlaylistModal: false,
     videoData: {},
     playlistVideos: [],
   });
 
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
   useEffect(() => {
-    getPlaylists(playlistDispatch);
-  }, []);
+    getPlaylists(playlistDispatch, toastDispatch);
+  }, [toastDispatch]);
 
   const value = { playlistState, playlistDispatch };
 

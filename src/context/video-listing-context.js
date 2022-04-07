@@ -1,11 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
+import { useToastContext } from "./toast-context";
+import { v4 as uuid } from "uuid";
 
 const VideoListing = createContext();
 const useVideoListingContext = () => useContext(VideoListing);
 
 const VideoListingProvider = ({ children }) => {
   const [videoList, setVideoList] = useState([]);
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
 
   // getting videos data
   useEffect(() => {
@@ -17,9 +22,17 @@ const VideoListingProvider = ({ children }) => {
         }
       } catch (error) {
         console.error(error);
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-error",
+            message: "error! check console",
+          },
+        });
       }
     })();
-  }, []);
+  }, [toastDispatch]);
 
   const value = { videoList, setVideoList };
 
