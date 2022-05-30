@@ -9,7 +9,7 @@ const LogoutPage = () => {
         <h2>You logged out successfully</h2>
         <div className="logout-flex logout-flex-direction">
           <p
-            className="btn btn-primary text-lg"
+            className="btn btn-primary text-lg cursor"
             onClick={() =>
               navigate("/sign-in", { state: { from: { pathname: "/" } } })
             }
