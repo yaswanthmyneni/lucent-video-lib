@@ -9,13 +9,8 @@
   display: block;
 }
 
-.modal-ul {
-  padding: 0;
-  margin-bottom: 0;
-}
-
-.modal-li {
-  display: inline-block;
+.modal-div {
+  margin-top: 1rem;
 }
 
 .modal > .btn {

@@ -54,7 +54,7 @@ const PlaylistPage = () => {
                 toastDispatch
               )
             }
-            playlistPage={playlistPage}
+            isPlaylistPage={playlistPage}
           />
         )}
       </main>

@@ -15,7 +15,7 @@ import {
 const SinglePlaylistPage = () => {
   //from playlist context
   const {
-    playlistState: { playlistVideos },
+    playlistState: { playlistVideos, playlists },
     playlistDispatch,
   } = usePlaylistContext();
 
@@ -67,7 +67,8 @@ const SinglePlaylistPage = () => {
                   playlistId,
                   videoData._id,
                   playlistDispatch,
-                  toastDispatch
+                  toastDispatch,
+                  playlists
                 )
               }
             />

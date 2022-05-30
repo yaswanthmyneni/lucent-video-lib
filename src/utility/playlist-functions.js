@@ -25,13 +25,13 @@ const createPlaylist = async (
         });
       }
 
-      if (playlistName === "") {
+      if (playlistName.match(/^\s*$/) !== null) {
         return toastDispatch({
           type: "ADD_TOAST",
           payload: {
             id: uuid(),
             className: "toast-warning",
-            message: "provide name to the playlist",
+            message: "enter valid name",
           },
         });
       }
@@ -41,7 +41,7 @@ const createPlaylist = async (
         url: "/api/user/playlists",
         headers: { authorization: encodedToken },
         data: {
-          playlist: { title: { playlistName }, description: "bar bar bar" },
+          playlist: { title: { playlistName }, description: "description" },
         },
       });
       if (response.status === 201) {
@@ -141,7 +141,6 @@ const deletePlaylist = async (id, playlistDispatch, toastDispatch) => {
       url: `/api/user/playlists/${id}`,
       headers: { authorization: localStorage.getItem("token") },
     });
-
     if (response.status === 200) {
       playlistDispatch({
         type: "PLAYLISTS",
@@ -173,7 +172,8 @@ const removeVideoFromPlaylist = async (
   playlistId,
   videoId,
   playlistDispatch,
-  toastDispatch
+  toastDispatch,
+  playlists
 ) => {
   try {
     const response = await axios({
@@ -182,6 +182,13 @@ const removeVideoFromPlaylist = async (
       headers: { authorization: localStorage.getItem("token") },
     });
     if (response.status === 200) {
+      const updatedPlaylists = [...playlists].map((playlist) => {
+        if (playlist._id === playlistId) {
+          return response.data.playlist;
+        }
+        return { ...playlist };
+      });
+      playlistDispatch({ type: "PLAYLISTS", payload: updatedPlaylists });
       playlistDispatch({
         type: "PLAYLIST_VIDEOS_DATA",
         payload: response.data.playlist.videos,
