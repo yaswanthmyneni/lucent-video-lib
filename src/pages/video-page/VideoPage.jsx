@@ -1,34 +1,49 @@
 import "./video-page.css";
-import { useLocation, useParams } from "react-router-dom";
-import { AsideBar } from "components";
+import { useParams } from "react-router-dom";
+import { AsideBar, PlaylistModal, SingleVideoCard } from "components";
+import {
+  usePlaylistContext,
+  useToastContext,
+  useVideoListingContext,
+} from "context";
+import { createPlaylist } from "utility";
 
 const VideoPage = () => {
-  const URL = "https://www.youtube.com/embed/";
+  // from react-router-dom
   const { video_id } = useParams();
-  const {
-    state: {
-      videoData: { title },
-    },
-  } = useLocation();
+
+  // from playlist context
+  const { playlistState, playlistDispatch } = usePlaylistContext();
+  const { playlists, playlistName, showPlaylistModal } = playlistState;
+
+  // from toast context
+  const { toastDispatch } = useToastContext();
+
+  // from video listing context
+  const { videoList } = useVideoListingContext();
+
+  const videoData = videoList.filter((videoData) => videoData._id === video_id);
+
   return (
     <div className="page-wrapper">
       <AsideBar />
       <main className="video-main">
         <h1>Video</h1>
-        <div className="video-container">
-          <iframe
-            width="848"
-            height="477"
-            src={`${URL}${video_id}?rel=0?version=3&autoplay=1&loop=1`}
-            title="YouTube video player"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-          <h4>{title}</h4>
-          <p className="m-bt-4px">12M views</p>
-        </div>
+        <SingleVideoCard videoData={videoData[0]}/>
       </main>
+      {showPlaylistModal && (
+        <PlaylistModal
+          videoData={videoData[0]}
+          createPlaylist={() =>
+            createPlaylist(
+              playlistName,
+              playlistDispatch,
+              playlists,
+              toastDispatch
+            )
+          }
+        />
+      )}
     </div>
   );
 };

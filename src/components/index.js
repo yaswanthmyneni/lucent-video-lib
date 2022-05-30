@@ -9,6 +9,7 @@ export { PlaylistVideoCard } from "./cards/playlist-video-card/PlaylistVideoCard
 export { LikesCard } from "./cards/likes-card/LikesCard";
 export { WatchLaterCard } from "./cards/watchlater-card/WatchLaterCard";
 export { HistoryCard } from "./cards/history-card/HistoryCard";
+export { SingleVideoCard } from "./cards/single-video-card/SingleVideoCard";
 export { Toast } from "./toast/Toast";
 export { Routing } from "./routing/Routing";
 export { RequireAuth } from "./require-auth/RequireAuth";

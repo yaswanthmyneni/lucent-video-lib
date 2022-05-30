@@ -41,24 +41,25 @@ const addToLikedVideos = async (
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
+      const likedVideo = { ...likedVideoData, isLiked: true };
       const response = await axios({
         method: "post",
         url: "/api/user/likes",
         headers: { authorization: localStorage.getItem("token") },
         data: {
-          video: likedVideoData,
+          video: likedVideo,
         },
       });
       if (response.status === 201) {
-        const likedVideosData = [...response.data.likes].map((data) => {
-          if (data._id === likedVideoData._id) {
-            return { ...data, isLiked: true };
-          }
-          return data;
-        });
+        // const likedVideosData = [...response.data.likes].map((data) => {
+        //   if (data._id === likedVideoData._id) {
+        //     return { ...data, isLiked: true };
+        //   }
+        //   return data;
+        // });
         likesDispatch({
           type: "LIKED_VIDEOS",
-          payload: likedVideosData,
+          payload: response.data.likes,
         });
         toastDispatch({
           type: "ADD_TOAST",

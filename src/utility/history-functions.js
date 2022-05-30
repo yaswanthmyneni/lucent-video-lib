@@ -51,9 +51,7 @@ const addToHistory = async (
             message: "already present in history",
           },
         });
-        return navigate(`/video/${videoData.video_id}`, {
-          state: { videoData },
-        });
+        return navigate(`/video/${videoData._id}`);
       }
       const response = await axios({
         method: "post",
@@ -76,14 +74,10 @@ const addToHistory = async (
             message: "Added to history",
           },
         });
-        navigate(`/video/${videoData.video_id}`, {
-          state: { videoData },
-        });
+        navigate(`/video/${videoData._id}`);
       }
     } else {
-      navigate(`/video/${videoData.video_id}`, {
-        state: { videoData },
-      });
+      navigate(`/video/${videoData._id}`);
       toastDispatch({
         type: "ADD_TOAST",
         payload: {
