@@ -57,7 +57,7 @@
   background-color: var(--color-green-400);
 }
 
-@media screen and (max-width: 486px) {
+@media screen and (max-width: 570px) {
   .video-card-container {
     width: 90%;
     margin: auto;

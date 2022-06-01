@@ -1,6 +1,6 @@
 import {
   BsThreeDotsVertical,
-  MdWatchLater,
+  MdOutlineWatchLater,
   MdPlaylistAdd,
   AiFillLike,
 } from "assets/icons/icons";
@@ -77,7 +77,7 @@ const VideoCard = ({
                     : updatedAddToWatchLater
                 }
               >
-                <MdWatchLater />
+                <MdOutlineWatchLater />
                 {watchLater ? "Remove from watchlater" : "Add to watchlater"}
               </li>
               <li

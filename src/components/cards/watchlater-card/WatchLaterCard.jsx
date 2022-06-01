@@ -1,4 +1,4 @@
-import { BsThreeDotsVertical, MdWatchLater } from "assets/icons/icons";
+import { BsThreeDotsVertical, MdOutlineWatchLater } from "assets/icons/icons";
 import { useState } from "react";
 
 const WatchLaterCard = ({
@@ -43,7 +43,7 @@ const WatchLaterCard = ({
                 className="dropdown-li cursor"
                 onClick={updatedRemoveFromWatchLater}
               >
-                <MdWatchLater />
+                <MdOutlineWatchLater />
                 Remove from watchlater
               </li>
             </ul>
