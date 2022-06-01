@@ -3,11 +3,7 @@ import { RiCloseCircleFill } from "assets/icons/icons";
 import "./playlist-modal.css";
 import { addVideoToRespectivePlaylist, removeVideoFromPlaylist } from "utility";
 
-const PlaylistModal = ({
-  videoData,
-  createPlaylist,
-  playlistPage,
-}) => {
+const PlaylistModal = ({ videoData, createPlaylist, isPlaylistPage }) => {
   // from playlist context
   const {
     playlistState: { playlists, playlistName },
@@ -16,6 +12,7 @@ const PlaylistModal = ({
 
   // from toast Context
   const { toastDispatch } = useToastContext();
+
   return (
     <>
       <div className="modal-bg"></div>
@@ -43,19 +40,30 @@ const PlaylistModal = ({
         <button className="btn btn-primary" onClick={createPlaylist}>
           creat playlist
         </button>
-        {!playlistPage && (
-          <ul className="ul-none modal-ul">
+        {!isPlaylistPage && (
+          <div className="modal-div">
             {playlists.map((playlist) => {
               return (
                 <div
                   key={playlist._id}
                   className="m-b-4px flex align-items-center"
                 >
-                  <label>
+                  <label className="cursor">
                     <input
                       type="checkbox"
-                      className="modal-input-checkbox"
-                      name="playlist"
+                      checked={playlists.find((singlePlaylist) => {
+                        if (singlePlaylist._id === playlist._id) {
+                          if (
+                            playlist.videos?.find(
+                              (video) => video._id === videoData._id
+                            )
+                          ) {
+                            return true;
+                          }
+                        }
+                        return false;
+                      }, false)}
+                      className="modal-input-checkbox cursor"
                       onChange={(event) => {
                         if (event.target.checked) {
                           addVideoToRespectivePlaylist(
@@ -70,19 +78,18 @@ const PlaylistModal = ({
                             playlist._id,
                             videoData._id,
                             playlistDispatch,
-                            toastDispatch
+                            toastDispatch,
+                            playlists
                           );
                         }
                       }}
                     />
-                    <li className="cursor modal-li">
-                      {playlist.title.playlistName}
-                    </li>
+                    {playlist.title.playlistName}
                   </label>
                 </div>
               );
             })}
-          </ul>
+          </div>
         )}
       </div>
     </>

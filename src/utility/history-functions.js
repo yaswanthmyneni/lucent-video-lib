@@ -34,25 +34,11 @@ const addToHistory = async (
   videoData,
   historyList,
   historyDispatch,
-  navigate,
   toastDispatch
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
-      if (
-        historyList.find((historyData) => historyData._id === videoData._id)
-      ) {
-        toastDispatch({
-          type: "ADD_TOAST",
-          payload: {
-            id: uuid(),
-            className: "toast-warning",
-            message: "already present in history",
-          },
-        });
-        return navigate(`/video/${videoData._id}`);
-      }
       const response = await axios({
         method: "post",
         url: "/api/user/history",
@@ -74,15 +60,13 @@ const addToHistory = async (
             message: "Added to history",
           },
         });
-        navigate(`/video/${videoData._id}`);
       }
     } else {
-      navigate(`/video/${videoData._id}`);
       toastDispatch({
         type: "ADD_TOAST",
         payload: {
           id: uuid(),
-          className: "toast-success",
+          className: "toast-warning",
           message: "login to store video in history",
         },
       });
@@ -135,19 +119,32 @@ const removeFromHistory = async (id, historyDispatch, toastDispatch) => {
   }
 };
 
-const clearAllFromHistory = async (historyDispatch, toastDispatch) => {
+const clearAllFromHistory = async (
+  historyList,
+  historyDispatch,
+  toastDispatch
+) => {
   try {
-    const response = await axios({
-      method: "delete",
-      url: `/api/user/history/all`,
-      headers: { authorization: localStorage.getItem("token") },
-    });
-
-    if (response.status === 200) {
-      historyDispatch({
-        type: "HISTORY",
-        payload: [...response.data.history],
+    if (historyList.length > 0) {
+      const response = await axios({
+        method: "delete",
+        url: `/api/user/history/all`,
+        headers: { authorization: localStorage.getItem("token") },
       });
+      if (response.status === 200) {
+        historyDispatch({
+          type: "HISTORY",
+          payload: response.data.history,
+        });
+        toastDispatch({
+          type: "ADD_TOAST",
+          payload: {
+            id: uuid(),
+            className: "toast-success",
+            message: "cleared all!",
+          },
+        });
+      }
     }
   } catch (error) {
     console.error(error);

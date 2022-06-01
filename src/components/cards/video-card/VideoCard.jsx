@@ -11,14 +11,13 @@ import "./video-card.css";
 const VideoCard = ({
   cardData,
   btnNameOne,
-  addToHistory,
   addToWatchLater,
   removeFromWatchLater,
   playlistDispatch,
   addToLikedVideos,
   removeFromLikedVideos,
 }) => {
-  const { title, image, watchLater, isLiked } = cardData;
+  const { _id, title, image, watchLater, isLiked } = cardData;
   const [dropdown, setDropdown] = useState(false);
 
   const updatedRemoveFromWatchLater = () => {
@@ -61,7 +60,10 @@ const VideoCard = ({
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button className="btn btn-primary" onClick={addToHistory}>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate(`/video/${_id}`)}
+        >
           {btnNameOne}
         </button>
         {dropdown && (
@@ -75,7 +77,7 @@ const VideoCard = ({
                     : updatedAddToWatchLater
                 }
               >
-                <MdWatchLater />{" "}
+                <MdWatchLater />
                 {watchLater ? "Remove from watchlater" : "Add to watchlater"}
               </li>
               <li

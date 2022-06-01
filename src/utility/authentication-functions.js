@@ -98,8 +98,6 @@ const submitSignUpDetails = async (
         });
       }
     } else {
-      // TODO - add toast here
-      console.log("Enter proper email format!");
       toastDispatch({
         type: "ADD_TOAST",
         payload: {
