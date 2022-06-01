@@ -1,6 +1,5 @@
 import "./video-listing-page.css";
 import {
-  useHistoryContext,
   useLikesContext,
   usePlaylistContext,
   useToastContext,
@@ -9,7 +8,6 @@ import {
 } from "context";
 import { AsideBar, PlaylistModal, VideoCard } from "components";
 import {
-  addToHistory,
   addToWatchLater,
   createPlaylist,
   removeFromWatchLater,
@@ -25,12 +23,6 @@ const VideoListingPage = () => {
 
   // from watch later context
   const { watchLaterDispatch } = useWatchLaterContext();
-
-  // from history context
-  const {
-    historyState: { historyList },
-    historyDispatch,
-  } = useHistoryContext();
 
   // from playlist context
   const { playlistState, playlistDispatch } = usePlaylistContext();
@@ -66,15 +58,6 @@ const VideoListingPage = () => {
               cardData={videoData}
               btnNameOne="Watch now"
               btnNameTwo="Watch later"
-              addToHistory={() =>
-                addToHistory(
-                  videoData,
-                  historyList,
-                  historyDispatch,
-                  navigate,
-                  toastDispatch
-                )
-              }
               removeFromWatchLater={() =>
                 removeFromWatchLater(
                   videoData._id,

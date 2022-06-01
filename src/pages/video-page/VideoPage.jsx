@@ -2,11 +2,13 @@ import "./video-page.css";
 import { useParams } from "react-router-dom";
 import { AsideBar, PlaylistModal, SingleVideoCard } from "components";
 import {
+  useHistoryContext,
   usePlaylistContext,
   useToastContext,
   useVideoListingContext,
 } from "context";
-import { createPlaylist } from "utility";
+import { addToHistory, createPlaylist } from "utility";
+import { useEffect } from "react";
 
 const VideoPage = () => {
   // from react-router-dom
@@ -22,18 +24,32 @@ const VideoPage = () => {
   // from video listing context
   const { videoList } = useVideoListingContext();
 
-  const videoData = videoList.filter((videoData) => videoData._id === video_id);
+  // from history context
+  const {
+    historyState: { historyList },
+    historyDispatch,
+  } = useHistoryContext();
+
+  const videoData = videoList.find((videoData) => videoData._id === video_id);
+
+  useEffect(() => {
+    if (
+      !historyList?.find((historyData) => historyData._id === videoData._id)
+    ) {
+      addToHistory(videoData, historyList, historyDispatch, toastDispatch);
+    }
+  }, [videoData, historyList, historyDispatch, toastDispatch]);
 
   return (
     <div className="page-wrapper">
       <AsideBar />
       <main className="video-main">
         <h1>Video</h1>
-        <SingleVideoCard videoData={videoData[0]}/>
+        <SingleVideoCard videoData={videoData} />
       </main>
       {showPlaylistModal && (
         <PlaylistModal
-          videoData={videoData[0]}
+          videoData={videoData}
           createPlaylist={() =>
             createPlaylist(
               playlistName,

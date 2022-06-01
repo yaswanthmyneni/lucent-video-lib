@@ -25,7 +25,7 @@ const HistoryPage = () => {
           <h3>History</h3>
           <button
             className="btn btn-danger history-btn"
-            onClick={() => clearAllFromHistory(historyDispatch)}
+            onClick={() => clearAllFromHistory(historyList, historyDispatch, toastDispatch)}
           >
             clear all
           </button>
