@@ -9,10 +9,6 @@
   margin: 1rem 2rem;
 }
 
-.playlist-page-main .flex {
-  justify-content: space-between;
-}
-
 .playlist-btn {
   padding: 0 1em;
   width: fit-content;
