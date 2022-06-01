@@ -1,7 +1,9 @@
 import { AiFillLike } from "assets/icons/icons";
+import { useNavigate } from "react-router-dom";
 
-const LikesCard = ({ cardData, btnNameOne, addToHistory, removeFromLikedVideos }) => {
-  const { title, image } = cardData;
+const LikesCard = ({ cardData, btnNameOne, removeFromLikedVideos }) => {
+  const { _id, title, image } = cardData;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -19,7 +21,7 @@ const LikesCard = ({ cardData, btnNameOne, addToHistory, removeFromLikedVideos }
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button className="btn btn-primary" onClick={addToHistory}>
+        <button className="btn btn-primary" onClick={() => navigate(`/video/${_id}`)}>
           {btnNameOne}
         </button>
       </div>

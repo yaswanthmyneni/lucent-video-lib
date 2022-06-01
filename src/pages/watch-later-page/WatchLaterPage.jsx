@@ -3,11 +3,9 @@ import { AsideBar, WatchLaterCard } from "components";
 import {
   useWatchLaterContext,
   useVideoListingContext,
-  useHistoryContext,
   useToastContext,
 } from "context";
-import { addToHistory, removeFromWatchLater } from "utility";
-import { useNavigate } from "react-router-dom";
+import { removeFromWatchLater } from "utility";
 
 const WatchLaterPage = () => {
   // from video listing context
@@ -19,17 +17,8 @@ const WatchLaterPage = () => {
     watchLaterDispatch,
   } = useWatchLaterContext();
 
-  // from history context
-  const {
-    historyState: { historyList },
-    historyDispatch,
-  } = useHistoryContext();
-
   // from toast context
   const { toastDispatch } = useToastContext();
-
-  // from react-router-dom
-  const navigate = useNavigate();
 
   return (
     <div className="page-wrapper">
@@ -47,15 +36,6 @@ const WatchLaterPage = () => {
                   watchLaterData._id,
                   setVideoList,
                   watchLaterDispatch,
-                  toastDispatch
-                )
-              }
-              addToHistory={() =>
-                addToHistory(
-                  watchLaterData,
-                  historyList,
-                  historyDispatch,
-                  navigate,
                   toastDispatch
                 )
               }

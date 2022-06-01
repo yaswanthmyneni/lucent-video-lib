@@ -1,12 +1,10 @@
 import { AsideBar, LikesCard } from "components";
 import {
-  useHistoryContext,
   useLikesContext,
   useToastContext,
   useVideoListingContext,
 } from "context";
-import { useNavigate } from "react-router-dom";
-import { addToHistory, removeFromLikedVideos } from "utility";
+import { removeFromLikedVideos } from "utility";
 
 const LikesPage = () => {
   const { setVideoList } = useVideoListingContext();
@@ -17,17 +15,8 @@ const LikesPage = () => {
     likesDispatch,
   } = useLikesContext();
 
-  // from history context
-  const {
-    historyState: { historyList },
-    historyDispatch,
-  } = useHistoryContext();
-
   // from toast context
   const { toastDispatch } = useToastContext();
-
-  // from react-router-dom
-  const navigate = useNavigate();
 
   return (
     <>
@@ -41,15 +30,6 @@ const LikesPage = () => {
                 key={likedVideoData._id}
                 cardData={likedVideoData}
                 btnNameOne="Watch now"
-                addToHistory={() =>
-                  addToHistory(
-                    likedVideoData,
-                    historyList,
-                    historyDispatch,
-                    navigate,
-                    toastDispatch
-                  )
-                }
                 removeFromLikedVideos={() =>
                   removeFromLikedVideos(
                     likedVideoData._id,

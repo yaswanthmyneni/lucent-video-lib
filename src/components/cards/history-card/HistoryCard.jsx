@@ -1,12 +1,13 @@
 import { MdDelete } from "assets/icons/icons";
+import { useNavigate } from "react-router-dom";
 
 const HistoryCard = ({
   cardData,
   btnNameOne,
-  addToHistory,
   removeFromHistory,
 }) => {
-  const { title, image } = cardData;
+  const { _id , title, image } = cardData;
+  const navigate = useNavigate();
 
   return (
     <>
@@ -24,7 +25,7 @@ const HistoryCard = ({
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button className="btn btn-primary" onClick={addToHistory}>
+        <button className="btn btn-primary" onClick={() => navigate(`/video/${_id}`)}>
           {btnNameOne}
         </button>
       </div>

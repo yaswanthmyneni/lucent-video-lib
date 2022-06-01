@@ -1,14 +1,11 @@
 import { BsThreeDotsVertical, MdOutlineWatchLater } from "assets/icons/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const WatchLaterCard = ({
-  cardData,
-  btnNameOne,
-  addToHistory,
-  removeFromWatchLater,
-}) => {
-  const { title, image } = cardData;
+const WatchLaterCard = ({ cardData, btnNameOne, removeFromWatchLater }) => {
+  const { _id, title, image } = cardData;
   const [dropdown, setDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const updatedRemoveFromWatchLater = () => {
     removeFromWatchLater();
@@ -33,7 +30,10 @@ const WatchLaterCard = ({
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button className="btn btn-primary" onClick={addToHistory}>
+        <button
+          className="btn btn-primary"
+          onClick={() => navigate(`/video/${_id}`)}
+        >
           {btnNameOne}
         </button>
         {dropdown && (
