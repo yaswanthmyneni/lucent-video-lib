@@ -26,7 +26,7 @@ const Toast = () => {
   }, [toastList, toastDispatch]);
 
   return (
-    <div className="toast-container">
+    <section className="toast-container">
       {toastList.length > 0 &&
         toastList.map((currToast) => (
           <div key={currToast.id} className={`toast ${currToast.className}`}>
@@ -44,7 +44,7 @@ const Toast = () => {
             <span className="text-xl toast-flex">{currToast.message}</span>
           </div>
         ))}
-    </div>
+    </section>
   );
 };
 

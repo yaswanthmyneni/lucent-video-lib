@@ -2,7 +2,7 @@ import "./category-card.css";
 
 const CategoryCard = ({ categoryData: { categoryName, image } }) => {
   return (
-    <div className="cursor card-pos-rel">
+    <section className="cursor card-pos-rel">
       <div className="category-image-container">
         <img
           className="image-resp border-radius"
@@ -14,7 +14,7 @@ const CategoryCard = ({ categoryData: { categoryName, image } }) => {
       <div className="card-text-overlay">
         <h3>{`${categoryName.toUpperCase()}`}</h3>
       </div>
-    </div>
+    </section>
   );
 };
 
