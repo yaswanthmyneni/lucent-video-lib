@@ -26,7 +26,7 @@ const Routing = () => {
       <Route path="/category">
         <Route path="youth-and-truth" element={<VideoListingPage />} />
         <Route path="yoga-sessions" element={<VideoListingPage />} />
-        <Route path="yogic-lifestyle" element={<VideoListingPage />} />
+        <Route path="save-soil" element={<VideoListingPage />} />
       </Route>
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/signup" element={<SignUpPage />} />

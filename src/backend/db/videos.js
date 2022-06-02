@@ -1,4 +1,13 @@
 import { v4 as uuid } from "uuid";
+import Bharat from "assets/images/bharat.png";
+import Muscat from "assets/images/muscat.png";
+import savesoil from "assets/images/savesoil.png";
+import natureOfLife from "assets/images/natureOfLife.png";
+import becomeSilence from "assets/images/becomeSilence.png";
+import fasting from "assets/images/fasting.png";
+import ISB from "assets/images/ISB.png";
+import michigan from "assets/images/michigan.png";
+import columbia from "assets/images/columbia.png";
 
 /**
  * Videos Database can be added here.
@@ -8,11 +17,10 @@ import { v4 as uuid } from "uuid";
 export const videos = [
   {
     _id: uuid(),
-    title: "session one",
+    title: "Become Silence",
     categoryName: "yoga-sessions",
-    image:
-      "https://i.pinimg.com/originals/ba/98/28/ba9828a5ef5ee11c8fb32151e0cd78f1.jpg",
-    video_url: "GQI-b5biZ94",
+    image: becomeSilence,
+    video_url: "giuuM5zo5DU",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -21,10 +29,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
-    categoryName: "yogic-lifestyle",
-    image: "https://pbs.twimg.com/media/E4pP2UpUYAAyij4.jpg:large",
-    video_url: "GQI-b5biZ94",
+    title: "Save Soil",
+    categoryName: "save-soil",
+    image: savesoil,
+    video_url: "d8UF0_km2yc",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -33,11 +41,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
+    title: "At ISB",
     categoryName: "youth-and-truth",
-    image:
-      "https://images.sadhguru.org/d/46272/1631021008-sadhguru-isha-wisdom-video-image-youth-and-truth-lets-gossip-about-truth.jpg?fit=max&fm=jpg&w=1000",
-    video_url: "GQI-b5biZ94",
+    image: ISB,
+    video_url: "k0GUG-8qWWM",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -46,11 +53,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "session two",
+    title: "Nature of Life",
     categoryName: "yoga-sessions",
-    image:
-      "https://i.pinimg.com/originals/ba/98/28/ba9828a5ef5ee11c8fb32151e0cd78f1.jpg",
-    video_url: "GQI-b5biZ94",
+    image: natureOfLife,
+    video_url: "HyRH0DBXO6U",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -59,10 +65,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
-    categoryName: "yogic-lifestyle",
-    image: "https://pbs.twimg.com/media/E4pP2UpUYAAyij4.jpg:large",
-    video_url: "GQI-b5biZ94",
+    title: "Bharat",
+    categoryName: "save-soil",
+    image: Bharat,
+    video_url: "pWopZEetFOE",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -71,11 +77,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
+    title: "michigan",
     categoryName: "youth-and-truth",
-    image:
-      "https://images.sadhguru.org/d/46272/1631021008-sadhguru-isha-wisdom-video-image-youth-and-truth-lets-gossip-about-truth.jpg?fit=max&fm=jpg&w=1000",
-    video_url: "GQI-b5biZ94",
+    image: michigan,
+    video_url: "iJldGi72Pl8",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -84,11 +89,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "session three",
+    title: "Fasting",
     categoryName: "yoga-sessions",
-    image:
-      "https://i.pinimg.com/originals/ba/98/28/ba9828a5ef5ee11c8fb32151e0cd78f1.jpg",
-    video_url: "GQI-b5biZ94",
+    image: fasting,
+    video_url: "VPZx6Dffu4Q",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -97,10 +101,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
-    categoryName: "yogic-lifestyle",
-    image: "https://pbs.twimg.com/media/E4pP2UpUYAAyij4.jpg:large",
-    video_url: "GQI-b5biZ94",
+    title: "Muscat Event",
+    categoryName: "save-soil",
+    image: Muscat,
+    video_url: "JZ0l6-PBYQo",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",
@@ -109,11 +113,10 @@ export const videos = [
   },
   {
     _id: uuid(),
-    title: "Dhyana Linga",
+    title: "Columbia",
     categoryName: "youth-and-truth",
-    image:
-      "https://images.sadhguru.org/d/46272/1631021008-sadhguru-isha-wisdom-video-image-youth-and-truth-lets-gossip-about-truth.jpg?fit=max&fm=jpg&w=1000",
-    video_url: "GQI-b5biZ94",
+    image: columbia,
+    video_url: "WISajR6x45A",
     description:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.",
     creator: "Soham Shah",

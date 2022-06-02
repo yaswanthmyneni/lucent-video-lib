@@ -78,7 +78,7 @@ const SingleVideoCard = ({ videoData }) => {
   };
 
   return (
-    <div className="video-container">
+    <section className="video-container">
       <iframe
         className="iframe"
         src={`${URL}${video_url}?rel=0?version=3&loop=1`}
@@ -125,7 +125,7 @@ const SingleVideoCard = ({ videoData }) => {
         </div>
       </div>
       <p className="m-bt-4px">12M views</p>
-    </div>
+    </section>
   );
 };
 

@@ -1,14 +1,12 @@
-import { BsThreeDotsVertical, MdWatchLater } from "assets/icons/icons";
+import { BsThreeDotsVertical, MdOutlineWatchLater } from "assets/icons/icons";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { BsFillPlayBtnFill } from "assets/icons/icons";
 
-const WatchLaterCard = ({
-  cardData,
-  btnNameOne,
-  addToHistory,
-  removeFromWatchLater,
-}) => {
-  const { title, image } = cardData;
+const WatchLaterCard = ({ cardData, removeFromWatchLater }) => {
+  const { _id, title, image } = cardData;
   const [dropdown, setDropdown] = useState(false);
+  const navigate = useNavigate();
 
   const updatedRemoveFromWatchLater = () => {
     removeFromWatchLater();
@@ -18,8 +16,17 @@ const WatchLaterCard = ({
   return (
     <>
       <div className="video-card-container card-pos-rel">
-        <div className="video-card-image-container">
+        <div className="video-card-image-container modal-pos-rel">
           <img className="image-resp" src={image} alt={title} />
+          <div
+            className="img-modal-container"
+            onClick={() => navigate(`/video/${_id}`)}
+          >
+            <div className="modal-bg img-modal-bg"></div>
+            <div className="video-card-modal">
+              <BsFillPlayBtnFill className="play-icon" />
+            </div>
+          </div>
         </div>
         <div className="card-margin">
           <div className="flex video-card-flex-adjustment">
@@ -33,9 +40,6 @@ const WatchLaterCard = ({
           </div>
           <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button className="btn btn-primary" onClick={addToHistory}>
-          {btnNameOne}
-        </button>
         {dropdown && (
           <div className="dropdown">
             <ul className="ul-none dropdown-ul">
@@ -43,7 +47,7 @@ const WatchLaterCard = ({
                 className="dropdown-li cursor"
                 onClick={updatedRemoveFromWatchLater}
               >
-                <MdWatchLater />
+                <MdOutlineWatchLater />
                 Remove from watchlater
               </li>
             </ul>

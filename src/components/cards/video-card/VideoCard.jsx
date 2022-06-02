@@ -1,16 +1,16 @@
 import {
   BsThreeDotsVertical,
-  MdWatchLater,
+  MdOutlineWatchLater,
   MdPlaylistAdd,
   AiFillLike,
 } from "assets/icons/icons";
 import { useState } from "react";
+import { BsFillPlayBtnFill } from "assets/icons/icons";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./video-card.css";
 
 const VideoCard = ({
   cardData,
-  btnNameOne,
   addToWatchLater,
   removeFromWatchLater,
   playlistDispatch,
@@ -30,25 +30,37 @@ const VideoCard = ({
     setDropdown(!dropdown);
   };
 
+  // from react-router-dom
   const navigate = useNavigate();
   const location = useLocation();
 
+  // from localStorage
   const encodedToken = localStorage.getItem("token");
+
   return (
-    <>
-      <div className="video-card-container card-pos-rel">
-        <AiFillLike
-          className={`video-card-icon cursor ${
-            isLiked ? "color-green" : "color-black"
-          }`}
-          onClick={isLiked ? removeFromLikedVideos : addToLikedVideos}
-        />
-        <div className="video-card-image-container">
-          <img className="image-resp" src={image} alt={title} />
+    <section className="video-card-container card-pos-rel">
+      <div className="video-card-image-container modal-pos-rel">
+        <img className="image-resp" src={image} alt={title} />
+        <div
+          className="img-modal-container"
+          onClick={() => navigate(`/video/${_id}`)}
+        >
+          <div className="modal-bg img-modal-bg"></div>
+          <div className="video-card-modal">
+            <BsFillPlayBtnFill className="play-icon" />
+          </div>
         </div>
-        <div className="card-margin">
-          <div className="flex video-card-flex-adjustment">
-            <h5>{title}</h5>
+      </div>
+      <div className="card-margin">
+        <div className="flex video-card-flex-adjustment">
+          <h5>{title}</h5>
+          <div className="flex align-items-center gap-8px">
+            <AiFillLike
+              className={`video-card-icon cursor ${
+                isLiked ? "color-green" : "color-black"
+              }`}
+              onClick={isLiked ? removeFromLikedVideos : addToLikedVideos}
+            />
             <BsThreeDotsVertical
               className="cursor"
               onClick={() => {
@@ -58,49 +70,43 @@ const VideoCard = ({
               }}
             />
           </div>
-          <small className="text-gray">6k views | 4 hours ago</small>
         </div>
-        <button
-          className="btn btn-primary"
-          onClick={() => navigate(`/video/${_id}`)}
-        >
-          {btnNameOne}
-        </button>
-        {dropdown && (
-          <div className="dropdown">
-            <ul className="ul-none dropdown-ul">
-              <li
-                className="dropdown-li cursor"
-                onClick={
-                  watchLater
-                    ? updatedRemoveFromWatchLater
-                    : updatedAddToWatchLater
-                }
-              >
-                <MdWatchLater />
-                {watchLater ? "Remove from watchlater" : "Add to watchlater"}
-              </li>
-              <li
-                className="dropdown-li cursor"
-                onClick={
-                  encodedToken
-                    ? () => {
-                        playlistDispatch({
-                          type: "SHOW_PLAYLIST_MODAL",
-                          payload: true,
-                        });
-                        setDropdown(!dropdown);
-                      }
-                    : () => navigate("/sign-in", { state: { from: location } })
-                }
-              >
-                <MdPlaylistAdd /> playlist
-              </li>
-            </ul>
-          </div>
-        )}
+        <small className="text-gray">6k views | 4 hours ago</small>
       </div>
-    </>
+      {dropdown && (
+        <div className="dropdown">
+          <ul className="ul-none dropdown-ul">
+            <li
+              className="dropdown-li cursor"
+              onClick={
+                watchLater
+                  ? updatedRemoveFromWatchLater
+                  : updatedAddToWatchLater
+              }
+            >
+              <MdOutlineWatchLater />
+              {watchLater ? "Remove from watchlater" : "Add to watchlater"}
+            </li>
+            <li
+              className="dropdown-li cursor"
+              onClick={
+                encodedToken
+                  ? () => {
+                      playlistDispatch({
+                        type: "SHOW_PLAYLIST_MODAL",
+                        payload: true,
+                      });
+                      setDropdown(!dropdown);
+                    }
+                  : () => navigate("/sign-in", { state: { from: location } })
+              }
+            >
+              <MdPlaylistAdd /> playlist
+            </li>
+          </ul>
+        </div>
+      )}
+    </section>
   );
 };
 

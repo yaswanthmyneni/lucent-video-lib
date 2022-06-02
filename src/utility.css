@@ -1,9 +1,11 @@
 :root {
   --z-index-header: 10;
+  --z-index-video-card-modal: 20;
   --z-index-aside-bar: 24;
   --z-index-dropdown-25: 25;
   --z-index-modal-26: 26;
   --z-index-toast-27: 27;
+  --color-active-bg-link: #181b1b;
 }
 
 body {
@@ -23,6 +25,14 @@ body {
 
 .flex-direction {
   flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .align-items-center {
@@ -73,10 +83,10 @@ body {
 
 .page-wrapper {
   display: grid;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 13rem 1fr;
 }
 
-@media screen and (max-width: 486px) {
+@media screen and (max-width: 570px) {
   .page-wrapper {
     display: grid;
     grid-template-columns: 1fr;

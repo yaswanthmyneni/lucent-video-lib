@@ -23,10 +23,7 @@
 }
 
 .video-card-icon {
-  font-size: 2rem;
-  position: absolute;
-  top: 12px;
-  right: 10px;
+  font-size: 1.5rem;
 }
 
 .dropdown {
@@ -57,7 +54,35 @@
   background-color: var(--color-green-400);
 }
 
-@media screen and (max-width: 486px) {
+.img-modal-bg {
+  position: absolute;
+  opacity: 0.5;
+  background-color: var(--color-gray);
+}
+
+.img-modal-container {
+  display: none;
+}
+
+.video-card-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-35%, -35%);
+  z-index: var(--z-index-video-card-modal);
+}
+
+.video-card-image-container:hover .img-modal-container {
+  display: block;
+  cursor: pointer;
+}
+
+.play-icon {
+  font-size: 3rem;
+  color: var(--color-red-700);
+}
+
+@media screen and (max-width: 570px) {
   .video-card-container {
     width: 90%;
     margin: auto;

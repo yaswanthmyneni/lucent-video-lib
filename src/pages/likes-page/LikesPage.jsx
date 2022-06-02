@@ -1,12 +1,11 @@
 import { AsideBar, LikesCard } from "components";
 import {
-  useHistoryContext,
   useLikesContext,
   useToastContext,
   useVideoListingContext,
 } from "context";
 import { useNavigate } from "react-router-dom";
-import { addToHistory, removeFromLikedVideos } from "utility";
+import { removeFromLikedVideos } from "utility";
 
 const LikesPage = () => {
   const { setVideoList } = useVideoListingContext();
@@ -17,50 +16,48 @@ const LikesPage = () => {
     likesDispatch,
   } = useLikesContext();
 
-  // from history context
-  const {
-    historyState: { historyList },
-    historyDispatch,
-  } = useHistoryContext();
+  // from react-router-dom
+  const navigate = useNavigate();
 
   // from toast context
   const { toastDispatch } = useToastContext();
-
-  // from react-router-dom
-  const navigate = useNavigate();
 
   return (
     <>
       <div className="page-wrapper">
         <AsideBar />
         <div className="playlist-page-main">
-          <h3>Liked videos</h3>
-          <div className="playlist-container">
-            {likedVideos.map((likedVideoData) => (
-              <LikesCard
-                key={likedVideoData._id}
-                cardData={likedVideoData}
-                btnNameOne="Watch now"
-                addToHistory={() =>
-                  addToHistory(
-                    likedVideoData,
-                    historyList,
-                    historyDispatch,
-                    navigate,
-                    toastDispatch
-                  )
-                }
-                removeFromLikedVideos={() =>
-                  removeFromLikedVideos(
-                    likedVideoData._id,
-                    likesDispatch,
-                    setVideoList,
-                    toastDispatch
-                  )
-                }
-              />
-            ))}
-          </div>
+          {likedVideos.length === 0 ? (
+            <div className="text-center">
+              <h3>Add videos to the Likes page</h3>
+              <button
+                className="btn btn-primary single-playlist-btn "
+                onClick={() => navigate("/")}
+              >
+                back to home
+              </button>
+            </div>
+          ) : (
+            <>
+              <h3>Liked videos</h3>
+              <div className="playlist-container">
+                {likedVideos.map((likedVideoData) => (
+                  <LikesCard
+                    key={likedVideoData._id}
+                    cardData={likedVideoData}
+                    removeFromLikedVideos={() =>
+                      removeFromLikedVideos(
+                        likedVideoData._id,
+                        likesDispatch,
+                        setVideoList,
+                        toastDispatch
+                      )
+                    }
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
       </div>
     </>

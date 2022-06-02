@@ -48,7 +48,6 @@ const VideoListingPage = () => {
   return (
     <div className="page-wrapper">
       <AsideBar />
-
       <main className="video-listing-main">
         <h3>Video Listing Page</h3>
         <div className="video-listing-container">
@@ -56,8 +55,6 @@ const VideoListingPage = () => {
             <VideoCard
               key={videoData._id}
               cardData={videoData}
-              btnNameOne="Watch now"
-              btnNameTwo="Watch later"
               removeFromWatchLater={() =>
                 removeFromWatchLater(
                   videoData._id,

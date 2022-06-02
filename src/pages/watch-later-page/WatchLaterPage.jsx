@@ -3,10 +3,9 @@ import { AsideBar, WatchLaterCard } from "components";
 import {
   useWatchLaterContext,
   useVideoListingContext,
-  useHistoryContext,
   useToastContext,
 } from "context";
-import { addToHistory, removeFromWatchLater } from "utility";
+import { removeFromWatchLater } from "utility";
 import { useNavigate } from "react-router-dom";
 
 const WatchLaterPage = () => {
@@ -19,49 +18,47 @@ const WatchLaterPage = () => {
     watchLaterDispatch,
   } = useWatchLaterContext();
 
-  // from history context
-  const {
-    historyState: { historyList },
-    historyDispatch,
-  } = useHistoryContext();
+  // from react-router-dom
+  const navigate = useNavigate();
 
   // from toast context
   const { toastDispatch } = useToastContext();
-
-  // from react-router-dom
-  const navigate = useNavigate();
 
   return (
     <div className="page-wrapper">
       <AsideBar />
       <main className="watch-later-page-main">
-        <h3>Watch Later</h3>
-        <div className="watch-later-container">
-          {watchLaterList.map((watchLaterData) => (
-            <WatchLaterCard
-              key={watchLaterData._id}
-              btnNameOne="Watch now"
-              cardData={watchLaterData}
-              removeFromWatchLater={() =>
-                removeFromWatchLater(
-                  watchLaterData._id,
-                  setVideoList,
-                  watchLaterDispatch,
-                  toastDispatch
-                )
-              }
-              addToHistory={() =>
-                addToHistory(
-                  watchLaterData,
-                  historyList,
-                  historyDispatch,
-                  navigate,
-                  toastDispatch
-                )
-              }
-            />
-          ))}
-        </div>
+        {watchLaterList.length === 0 ? (
+          <div className="text-center">
+            <h3>Add videos to the watchlater page</h3>
+            <button
+              className="btn btn-primary single-playlist-btn "
+              onClick={() => navigate("/")}
+            >
+              back to home
+            </button>
+          </div>
+        ) : (
+          <>
+            <h3>Watch Later</h3>
+            <div className="watch-later-container">
+              {watchLaterList.map((watchLaterData) => (
+                <WatchLaterCard
+                  key={watchLaterData._id}
+                  cardData={watchLaterData}
+                  removeFromWatchLater={() =>
+                    removeFromWatchLater(
+                      watchLaterData._id,
+                      setVideoList,
+                      watchLaterDispatch,
+                      toastDispatch
+                    )
+                  }
+                />
+              ))}
+            </div>
+          </>
+        )}
       </main>
     </div>
   );
