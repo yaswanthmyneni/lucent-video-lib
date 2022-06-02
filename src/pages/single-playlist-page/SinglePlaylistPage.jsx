@@ -48,7 +48,6 @@ const SinglePlaylistPage = () => {
                 <PlaylistVideoCard
                   key={videoData._id}
                   cardData={videoData}
-                  btnNameOne="Watch now"
                   removeVideoFromPlaylist={() =>
                     removeVideoFromPlaylist(
                       playlistId,

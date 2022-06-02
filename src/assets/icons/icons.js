@@ -1,4 +1,4 @@
-export { BsThreeDotsVertical } from "react-icons/bs";
+export { BsThreeDotsVertical, BsFillPlayBtnFill } from "react-icons/bs";
 export { MdWatchLater, MdOutlineWatchLater, MdHistory } from "react-icons/md";
 export { MdDelete } from "react-icons/md";
 export { MdPlaylistAdd } from "react-icons/md";

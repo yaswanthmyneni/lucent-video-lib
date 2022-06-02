@@ -52,7 +52,6 @@ const HistoryPage = () => {
               {historyList.map((historyData) => (
                 <HistoryCard
                   key={historyData._id}
-                  btnNameOne="Watch now"
                   cardData={historyData}
                   removeFromHistory={() =>
                     removeFromHistory(

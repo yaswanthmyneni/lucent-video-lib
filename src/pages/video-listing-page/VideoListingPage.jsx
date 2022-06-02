@@ -55,8 +55,6 @@ const VideoListingPage = () => {
             <VideoCard
               key={videoData._id}
               cardData={videoData}
-              btnNameOne="Watch now"
-              btnNameTwo="Watch later"
               removeFromWatchLater={() =>
                 removeFromWatchLater(
                   videoData._id,

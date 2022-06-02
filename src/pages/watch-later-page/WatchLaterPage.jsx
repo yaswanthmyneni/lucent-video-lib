@@ -45,7 +45,6 @@ const WatchLaterPage = () => {
               {watchLaterList.map((watchLaterData) => (
                 <WatchLaterCard
                   key={watchLaterData._id}
-                  btnNameOne="Watch now"
                   cardData={watchLaterData}
                   removeFromWatchLater={() =>
                     removeFromWatchLater(

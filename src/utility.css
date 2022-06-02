@@ -1,5 +1,6 @@
 :root {
   --z-index-header: 10;
+  --z-index-video-card-modal: 20;
   --z-index-aside-bar: 24;
   --z-index-dropdown-25: 25;
   --z-index-modal-26: 26;

@@ -45,7 +45,6 @@ const LikesPage = () => {
                   <LikesCard
                     key={likedVideoData._id}
                     cardData={likedVideoData}
-                    btnNameOne="Watch now"
                     removeFromLikedVideos={() =>
                       removeFromLikedVideos(
                         likedVideoData._id,

@@ -14,7 +14,7 @@ const PlaylistCard = ({ playlist, deletePlaylist }) => {
     <section className="playlist-card-container card-pos-rel">
       <div className="playlist-card-image-container">
         <MdDelete
-          className="video-card-icon cursor color-red"
+          className="playlist-delete-icon cursor color-red"
           onClick={deletePlaylist}
         />
         <img

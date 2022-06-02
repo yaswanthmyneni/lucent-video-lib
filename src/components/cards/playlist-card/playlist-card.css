@@ -7,3 +7,10 @@
 .playlist-card-image-container {
   height: 13rem;
 }
+
+.playlist-delete-icon {
+  font-size: 2rem;
+  position: absolute;
+  top: 8px;
+  right: 12px;
+}
