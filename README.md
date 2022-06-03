@@ -19,6 +19,7 @@ A Video Library for learning different aspects of yoga.
 - Add video to likes page.
 - Create playlists and save videos in playlists.
 - Toast feature.
+- Responsiveness.
 
 ---
 
@@ -26,7 +27,7 @@ A Video Library for learning different aspects of yoga.
 
 - ReactJs
 - React Router
-- CSS
+- CSS and [lucentUI](https://ym-cl-dev.netlify.app/documentation/) a custom made ui library.
 - [MockBee](https://mockbee.netlify.app/) for backend
 
 ---
