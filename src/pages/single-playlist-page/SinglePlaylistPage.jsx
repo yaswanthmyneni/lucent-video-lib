@@ -1,11 +1,13 @@
-import { AsideBar, PlaylistVideoCard } from "components";
+import { AsideBar, Loader, PlaylistVideoCard } from "components";
 import { usePlaylistContext, useToastContext } from "context";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getPlaylistData, removeVideoFromPlaylist } from "utility";
-import './single-playlist-btn.css';
+import "./single-playlist-btn.css";
+import { useState } from "react";
 
 const SinglePlaylistPage = () => {
+  const [loading, setLoading] = useState("loading");
   //from playlist context
   const {
     playlistState: { playlistVideos, playlists },
@@ -20,23 +22,28 @@ const SinglePlaylistPage = () => {
   const { playlistId } = useParams();
 
   useEffect(() => {
-    getPlaylistData(playlistId, playlistDispatch);
-    // return () => {
-    //   playlistDispatch({
-    //     type: "PLAYLIST_VIDEOS_DATA",
-    //     payload: [],
-    //   });
-    // };
-  }, [playlistId, playlistDispatch]);
+    getPlaylistData(playlistId, playlistDispatch, setLoading, toastDispatch);
+    return () => {
+      playlistDispatch({
+        type: "PLAYLIST_VIDEOS_DATA",
+        payload: [],
+      });
+    };
+  }, [playlistId, playlistDispatch, toastDispatch]);
 
   return (
     <div className="page-wrapper">
       <AsideBar />
       <div className="playlist-page-main">
-        {playlistVideos.length === 0 ? (
+        {loading ? (
+          <Loader />
+        ) : playlistVideos.length === 0 ? (
           <div className="text-center">
             <h3>Add videos to this playlist</h3>
-            <button className="btn btn-primary single-playlist-btn " onClick={() => navigate("/")}>
+            <button
+              className="btn btn-primary single-playlist-btn "
+              onClick={() => navigate("/")}
+            >
               back to home
             </button>
           </div>

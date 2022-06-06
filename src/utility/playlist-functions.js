@@ -5,7 +5,7 @@ const createPlaylist = async (
   playlistName,
   playlistDispatch,
   playlists,
-  toastDispatch,
+  toastDispatch
 ) => {
   try {
     const encodedToken = localStorage.getItem("token");
@@ -215,7 +215,12 @@ const removeVideoFromPlaylist = async (
   }
 };
 
-const getPlaylistData = async (playlistId, playlistDispatch, toastDispatch) => {
+const getPlaylistData = async (
+  playlistId,
+  playlistDispatch,
+  setLoading,
+  toastDispatch
+) => {
   try {
     const encodedToken = localStorage.getItem("token");
     if (encodedToken) {
@@ -230,6 +235,7 @@ const getPlaylistData = async (playlistId, playlistDispatch, toastDispatch) => {
           type: "PLAYLIST_VIDEOS_DATA",
           payload: response.data.playlist?.videos,
         });
+        setLoading('');
       }
     }
   } catch (error) {
