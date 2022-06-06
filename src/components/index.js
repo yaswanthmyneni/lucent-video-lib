@@ -11,5 +11,6 @@ export { WatchLaterCard } from "./cards/watchlater-card/WatchLaterCard";
 export { HistoryCard } from "./cards/history-card/HistoryCard";
 export { SingleVideoCard } from "./cards/single-video-card/SingleVideoCard";
 export { Toast } from "./toast/Toast";
+export { Loader } from "./loader/Loader";
 export { Routing } from "./routing/Routing";
 export { RequireAuth } from "./require-auth/RequireAuth";
