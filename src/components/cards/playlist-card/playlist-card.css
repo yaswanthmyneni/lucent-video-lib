@@ -6,11 +6,33 @@
 
 .playlist-card-image-container {
   height: 13rem;
+  position: relative;
 }
 
-.playlist-delete-icon {
-  font-size: 2rem;
-  position: absolute;
-  top: 8px;
-  right: 12px;
+.playlist-card-icon {
+  font-size: 1.5rem;
+}
+
+.playlist-card-flex-adjustment {
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.playlist-card-image-container:hover .img-modal-container {
+  display: block;
+  cursor: pointer;
+}
+
+.modal-text {
+  font-weight: bold;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--color-white);
+}
+
+.img-modal-bg{
+  opacity: 0.8;
 }

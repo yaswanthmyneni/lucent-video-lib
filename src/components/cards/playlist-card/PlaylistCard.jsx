@@ -1,10 +1,12 @@
 import { MdDelete } from "assets/icons/icons";
+import fallbackImage from "assets/images/homemobilescreen.jpeg";
 import { useNavigate } from "react-router-dom";
 import "./playlist-card.css";
 
 const PlaylistCard = ({ playlist, deletePlaylist }) => {
   const {
     title: { playlistName },
+    videos,
   } = playlist;
 
   // from react-router-dom
@@ -13,25 +15,29 @@ const PlaylistCard = ({ playlist, deletePlaylist }) => {
   return (
     <section className="playlist-card-container card-pos-rel">
       <div className="playlist-card-image-container">
-        <MdDelete
-          className="playlist-delete-icon cursor color-red"
-          onClick={deletePlaylist}
-        />
         <img
-          className="image-resp"
-          src="https://i.pinimg.com/originals/ba/98/28/ba9828a5ef5ee11c8fb32151e0cd78f1.jpg"
+          className="image-resp cursor"
+          src={videos[videos?.length - 1]?.image || fallbackImage}
           alt={playlistName}
         />
+        <div
+          className="img-modal-container"
+          onClick={() => navigate(`/playlist/${playlist._id}`)}
+        >
+          <div className="modal-bg img-modal-bg"></div>
+          <div className="video-card-modal modal-text text-xl">
+            <p>{videos.length}</p>
+            <p className="m-0">Show Videos</p>
+          </div>
+        </div>
       </div>
-      <h5 className="color-black">{playlistName}</h5>
-      <button
-        className="btn btn-primary"
-        onClick={() => {
-          navigate(`/playlist/${playlist._id}`);
-        }}
-      >
-        show videos
-      </button>
+      <div className="flex playlist-card-flex-adjustment">
+        <h5 className="color-black">{playlistName}</h5>
+        <MdDelete
+          className="playlist-card-icon cursor color-red"
+          onClick={deletePlaylist}
+        />
+      </div>
     </section>
   );
 };
